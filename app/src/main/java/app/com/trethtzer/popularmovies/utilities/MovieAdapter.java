@@ -5,6 +5,7 @@ import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.GridView;
 import android.widget.ImageView;
 
 import com.squareup.picasso.Picasso;
@@ -32,6 +33,7 @@ public class MovieAdapter extends ArrayAdapter<Movie> {
         View rootView = ((Activity)c).getLayoutInflater().inflate(R.layout.item_gridview_movie,parent,false);
 
         ImageView iconView = (ImageView) rootView.findViewById(R.id.imageView_item_movie);
+        iconView.setPadding(0,0,0,0);
 //        Picasso.with(c).load("http://i.imgur.com/DvpvklR.png").into(iconView);
         iconView.setImageResource(R.drawable.imagen);
 
