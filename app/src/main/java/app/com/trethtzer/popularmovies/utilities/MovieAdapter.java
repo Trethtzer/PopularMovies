@@ -34,8 +34,10 @@ public class MovieAdapter extends ArrayAdapter<Movie> {
 
         ImageView iconView = (ImageView) rootView.findViewById(R.id.imageView_item_movie);
         iconView.setPadding(0,0,0,0);
-//        Picasso.with(c).load("http://i.imgur.com/DvpvklR.png").into(iconView);
         iconView.setImageResource(R.drawable.imagen);
+        Picasso.with(c)
+                .load("http://i.imgur.com/DvpvklR.png")
+                .into(iconView);
 
         return rootView;
     }

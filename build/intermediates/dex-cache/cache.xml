@@ -84,15 +84,6 @@
     </item>
     <item
         is-multidex="true"
-        jar="D:\computer\android udacious\PopularMovies\app\build\intermediates\exploded-aar\com.android.support\animated-vector-drawable\24.2.1\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.3"
-        sha1="94bc1dfb84dcc8b6f6f8f7cc726d7b2dd39c1574">
-        <dex dex="D:\computer\android udacious\PopularMovies\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-animated-vector-drawable-24.2.1_dd013c84be58ff6f5db7f4637ff8003d67dc17ef\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
         jar="D:\computer\android udacious\PopularMovies\app\build\intermediates\exploded-aar\com.android.support\support-core-ui\24.2.1\jars\classes.jar"
         jumboMode="true"
         optimize="true"
@@ -102,11 +93,20 @@
     </item>
     <item
         is-multidex="true"
+        jar="D:\computer\android udacious\PopularMovies\app\build\intermediates\exploded-aar\com.android.support\animated-vector-drawable\24.2.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.3"
+        sha1="94bc1dfb84dcc8b6f6f8f7cc726d7b2dd39c1574">
+        <dex dex="D:\computer\android udacious\PopularMovies\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-animated-vector-drawable-24.2.1_dd013c84be58ff6f5db7f4637ff8003d67dc17ef\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
         jar="D:\computer\android udacious\PopularMovies\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
         jumboMode="true"
         optimize="true"
         revision="24.0.3"
-        sha1="9b6d078ec89cf80d5abebec471e580f79d963090">
+        sha1="198214771297963f4f6f6c124f92aa8cf0c4d0cc">
         <dex dex="D:\computer\android udacious\PopularMovies\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run_fd9921521f75a06d278a8245d7cde69b0606d289\classes.dex" />
     </item>
     <item
@@ -142,7 +142,7 @@
         jumboMode="true"
         optimize="true"
         revision="24.0.3"
-        sha1="19ea9cf8a2e3d0e14557d43c5c4a3b4cf30fc23f">
+        sha1="03b53385a58b77face86572da53c26a069d23477">
         <dex dex="D:\computer\android udacious\PopularMovies\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_8674ca4f9d953d5c556e0bdddd6b5125ade3468e\classes.dex" />
     </item>
     <item
@@ -165,21 +165,21 @@
     </item>
     <item
         is-multidex="true"
-        jar="D:\computer\android udacious\PopularMovies\app\build\intermediates\exploded-aar\com.android.support\support-core-utils\24.2.1\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.3"
-        sha1="9c4c3bc902450c39ed54de170db4fb12aea20a35">
-        <dex dex="D:\computer\android udacious\PopularMovies\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-core-utils-24.2.1_9d33b76c5130c4f4a4ff4441c1649e84c1bdbcab\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
         jar="D:\computer\android udacious\PopularMovies\app\build\intermediates\exploded-aar\com.android.support\design\24.2.1\jars\classes.jar"
         jumboMode="true"
         optimize="true"
         revision="24.0.3"
         sha1="e03f47f3d1017a093bb3239d4ec47c3447f40744">
         <dex dex="D:\computer\android udacious\PopularMovies\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-design-24.2.1_5c41735176383dfecea365f25881b49e44934f1b\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\computer\android udacious\PopularMovies\app\build\intermediates\exploded-aar\com.android.support\support-core-utils\24.2.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.3"
+        sha1="9c4c3bc902450c39ed54de170db4fb12aea20a35">
+        <dex dex="D:\computer\android udacious\PopularMovies\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-core-utils-24.2.1_9d33b76c5130c4f4a4ff4441c1649e84c1bdbcab\classes.dex" />
     </item>
 
 </items>
