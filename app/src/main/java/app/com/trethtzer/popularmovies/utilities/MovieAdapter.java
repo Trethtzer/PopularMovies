@@ -32,7 +32,8 @@ public class MovieAdapter extends ArrayAdapter<Movie> {
         View rootView = ((Activity)c).getLayoutInflater().inflate(R.layout.item_gridview_movie,parent,false);
 
         ImageView iconView = (ImageView) rootView.findViewById(R.id.imageView_item_movie);
-        Picasso.with(c).load("http://i.imgur.com/DvpvklR.png").into(iconView);
+//        Picasso.with(c).load("http://i.imgur.com/DvpvklR.png").into(iconView);
+        iconView.setImageResource(R.drawable.imagen);
 
         return rootView;
     }
