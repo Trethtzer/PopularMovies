@@ -1,7 +1,7 @@
 package app.com.trethtzer.popularmovies.utilities;
 
 import android.app.Activity;
-import android.view.LayoutInflater;
+import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -19,17 +19,20 @@ import app.com.trethtzer.popularmovies.R;
 
 public class MovieAdapter extends ArrayAdapter<Movie> {
 
-    public MovieAdapter(Activity context, List<Movie> list){
-        super(context,0,list);
+    Context c;
+
+    public MovieAdapter(Activity context,int layoutResourceId, List<Movie> list){
+        super(context,layoutResourceId,list);
+        c = context;
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent){
         Movie movie = getItem(position);
-        View rootView = LayoutInflater.from(getContext()).inflate(R.layout.item_gridview_movie,parent,true);
+        View rootView = ((Activity)c).getLayoutInflater().inflate(R.layout.item_gridview_movie,parent,false);
 
         ImageView iconView = (ImageView) rootView.findViewById(R.id.imageView_item_movie);
-        Picasso.with(getContext()).load("http://i.imgur.com/DvpvklR.png").into(iconView);
+        Picasso.with(c).load("http://i.imgur.com/DvpvklR.png").into(iconView);
 
         return rootView;
     }
