@@ -12,6 +12,69 @@
     </item>
     <item
         is-multidex="true"
+        jar="D:\computer\android udacious\PopularMovies\app\build\intermediates\exploded-aar\com.android.support\support-v4\24.2.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.3"
+        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
+        <dex dex="D:\computer\android udacious\PopularMovies\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-v4-24.2.1_2cb712cf542f760b44f95d8fe136998437b7e666\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\computer\android udacious\PopularMovies\app\build\intermediates\exploded-aar\com.android.support\support-media-compat\24.2.1\jars\libs\internal_impl-24.2.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.3"
+        sha1="fbf8da429efd5ad21e02e3e5ecaa1efc4167878d">
+        <dex dex="D:\computer\android udacious\PopularMovies\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-24.2.1_7ec8ff001f60b5f975774ce6e50ec02259e7fec0\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\computer\android udacious\PopularMovies\app\build\intermediates\exploded-aar\com.android.support\support-core-ui\24.2.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.3"
+        sha1="e7f3132168957eefc46229fc32c3bd464642b71e">
+        <dex dex="D:\computer\android udacious\PopularMovies\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-core-ui-24.2.1_bc820bff8f746021fbcc6bce18601c0f9b1a3336\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\computer\android udacious\PopularMovies\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.3"
+        sha1="8657a54caaccd5ce7b43534c062e543a9d522951">
+        <dex dex="D:\computer\android udacious\PopularMovies\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run_fd9921521f75a06d278a8245d7cde69b0606d289\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\computer\android udacious\PopularMovies\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.3"
+        sha1="62b961f004f2942224bf83db590a164a5be75c86">
+        <dex dex="D:\computer\android udacious\PopularMovies\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_8674ca4f9d953d5c556e0bdddd6b5125ade3468e\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\computer\android udacious\PopularMovies\app\build\intermediates\exploded-aar\com.android.support\support-compat\24.2.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.3"
+        sha1="0ecb4b595fa0f0f8018a149ace3ea6525624f94e">
+        <dex dex="D:\computer\android udacious\PopularMovies\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-compat-24.2.1_91d552738b517a71c765ac01bdc3ab0ab064b752\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\computer\android udacious\PopularMovies\app\build\intermediates\exploded-aar\com.android.support\design\24.2.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.3"
+        sha1="e03f47f3d1017a093bb3239d4ec47c3447f40744">
+        <dex dex="D:\computer\android udacious\PopularMovies\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-design-24.2.1_5c41735176383dfecea365f25881b49e44934f1b\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
         jar="C:\Users\Trethtzer\.gradle\caches\modules-2\files-2.1\com.squareup.picasso\picasso\2.5.2\7446d06ec8d4f7ffcc53f1da37c95f200dcb9387\picasso-2.5.2.jar"
         jumboMode="true"
         optimize="true"
@@ -36,15 +99,6 @@
         revision="24.0.3"
         sha1="7e4389bd133359a2ff88623ff1e4ff93d6e6f780">
         <dex dex="D:\computer\android udacious\PopularMovies\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-24.2.1_2de1b4c230e9b8062798c5c6d35aab5c6d06abe1\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="D:\computer\android udacious\PopularMovies\app\build\intermediates\exploded-aar\com.android.support\support-v4\24.2.1\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.3"
-        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
-        <dex dex="D:\computer\android udacious\PopularMovies\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-v4-24.2.1_2cb712cf542f760b44f95d8fe136998437b7e666\classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -75,39 +129,12 @@
     </item>
     <item
         is-multidex="true"
-        jar="D:\computer\android udacious\PopularMovies\app\build\intermediates\exploded-aar\com.android.support\support-media-compat\24.2.1\jars\libs\internal_impl-24.2.1.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.3"
-        sha1="fbf8da429efd5ad21e02e3e5ecaa1efc4167878d">
-        <dex dex="D:\computer\android udacious\PopularMovies\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-24.2.1_7ec8ff001f60b5f975774ce6e50ec02259e7fec0\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="D:\computer\android udacious\PopularMovies\app\build\intermediates\exploded-aar\com.android.support\support-core-ui\24.2.1\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.3"
-        sha1="e7f3132168957eefc46229fc32c3bd464642b71e">
-        <dex dex="D:\computer\android udacious\PopularMovies\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-core-ui-24.2.1_bc820bff8f746021fbcc6bce18601c0f9b1a3336\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
         jar="D:\computer\android udacious\PopularMovies\app\build\intermediates\exploded-aar\com.android.support\animated-vector-drawable\24.2.1\jars\classes.jar"
         jumboMode="true"
         optimize="true"
         revision="24.0.3"
         sha1="94bc1dfb84dcc8b6f6f8f7cc726d7b2dd39c1574">
         <dex dex="D:\computer\android udacious\PopularMovies\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-animated-vector-drawable-24.2.1_dd013c84be58ff6f5db7f4637ff8003d67dc17ef\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="D:\computer\android udacious\PopularMovies\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.3"
-        sha1="198214771297963f4f6f6c124f92aa8cf0c4d0cc">
-        <dex dex="D:\computer\android udacious\PopularMovies\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run_fd9921521f75a06d278a8245d7cde69b0606d289\classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -138,39 +165,12 @@
     </item>
     <item
         is-multidex="true"
-        jar="D:\computer\android udacious\PopularMovies\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.3"
-        sha1="03b53385a58b77face86572da53c26a069d23477">
-        <dex dex="D:\computer\android udacious\PopularMovies\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_8674ca4f9d953d5c556e0bdddd6b5125ade3468e\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="D:\computer\android udacious\PopularMovies\app\build\intermediates\exploded-aar\com.android.support\support-compat\24.2.1\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.3"
-        sha1="0ecb4b595fa0f0f8018a149ace3ea6525624f94e">
-        <dex dex="D:\computer\android udacious\PopularMovies\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-compat-24.2.1_91d552738b517a71c765ac01bdc3ab0ab064b752\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
         jar="D:\computer\android udacious\PopularMovies\app\build\intermediates\exploded-aar\com.android.support\support-core-ui\24.2.1\jars\libs\internal_impl-24.2.1.jar"
         jumboMode="true"
         optimize="true"
         revision="24.0.3"
         sha1="867dad63c33388ff8c7644b236579355036d075f">
         <dex dex="D:\computer\android udacious\PopularMovies\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-24.2.1_a13099290e9dca14d8ffe4a08a40370f15c171a4\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="D:\computer\android udacious\PopularMovies\app\build\intermediates\exploded-aar\com.android.support\design\24.2.1\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.3"
-        sha1="e03f47f3d1017a093bb3239d4ec47c3447f40744">
-        <dex dex="D:\computer\android udacious\PopularMovies\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-design-24.2.1_5c41735176383dfecea365f25881b49e44934f1b\classes.dex" />
     </item>
     <item
         is-multidex="true"

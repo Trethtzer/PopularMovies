@@ -36,7 +36,7 @@ public class MovieAdapter extends ArrayAdapter<Movie> {
         iconView.setPadding(0,0,0,0);
         iconView.setImageResource(R.drawable.imagen);
         Picasso.with(c)
-                .load("http://i.imgur.com/DvpvklR.png")
+                .load(movie.getUrl())
                 .into(iconView);
 
         return rootView;
