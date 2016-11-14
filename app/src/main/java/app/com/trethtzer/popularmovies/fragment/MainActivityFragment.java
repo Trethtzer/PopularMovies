@@ -1,7 +1,9 @@
 package app.com.trethtzer.popularmovies.fragment;
 
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.util.Log;
@@ -51,7 +53,8 @@ public class MainActivityFragment extends Fragment {
         GridView gv = (GridView) rootView.findViewById(R.id.gridView_summary);
         gv.setAdapter(adapter);
 
-        new FetchMoviesTask().execute("popular");
+        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        new FetchMoviesTask().execute(sp.getString("search",getString(R.string.lp_defaultValue_search)));
 
         return rootView;
     }
@@ -65,29 +68,6 @@ public class MainActivityFragment extends Fragment {
             if(params == null){
                 return null;
             }
-
-            // FAKE DATA
-            ArrayList<Movie> movies = new ArrayList<>();
-            movies.add(new Movie(0,"yep"));
-            movies.add(new Movie(0,"yep"));
-            movies.add(new Movie(0,"yep"));
-            movies.add(new Movie(0,"yep"));
-            movies.add(new Movie(0,"yep"));
-            movies.add(new Movie(0,"yep"));
-            movies.add(new Movie(0,"yep"));
-            movies.add(new Movie(0,"yep"));
-            movies.add(new Movie(0,"yep"));
-            movies.add(new Movie(0,"yep"));
-            movies.add(new Movie(0,"yep"));
-            movies.add(new Movie(0,"yep"));
-            movies.add(new Movie(0,"yep"));
-            movies.add(new Movie(0,"yep"));
-            movies.add(new Movie(0,"yep"));
-            movies.add(new Movie(0,"yep"));
-            movies.add(new Movie(0,"yep"));
-            movies.add(new Movie(0,"yep"));
-            movies.add(new Movie(0,"yep"));
-            movies.add(new Movie(0,"yep"));
 
             HttpURLConnection urlConnection = null;
             BufferedReader bReader = null;
