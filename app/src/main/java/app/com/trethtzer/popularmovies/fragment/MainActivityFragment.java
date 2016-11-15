@@ -1,5 +1,6 @@
 package app.com.trethtzer.popularmovies.fragment;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -10,6 +11,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.GridView;
 
 import org.json.JSONArray;
@@ -26,6 +28,7 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
 
+import app.com.trethtzer.popularmovies.DetailActivity;
 import app.com.trethtzer.popularmovies.R;
 import app.com.trethtzer.popularmovies.utilities.Movie;
 import app.com.trethtzer.popularmovies.utilities.MovieAdapter;
@@ -52,6 +55,15 @@ public class MainActivityFragment extends Fragment {
         adapter = new MovieAdapter(getActivity(),R.layout.item_gridview_movie,movies);
         GridView gv = (GridView) rootView.findViewById(R.id.gridView_summary);
         gv.setAdapter(adapter);
+        gv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Movie m = (Movie) adapterView.getItemAtPosition(i);
+                Intent intent = new Intent(getActivity(), DetailActivity.class);
+                intent.putExtra("title",m.getTitle());
+                startActivity(intent);
+            }
+        });
 
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getActivity());
         new FetchMoviesTask().execute(sp.getString("search",getString(R.string.lp_defaultValue_search)));
@@ -84,7 +96,6 @@ public class MainActivityFragment extends Fragment {
                 Uri builtUri = builder.build();
 
                 URL url = new URL(builtUri.toString());
-                // Log.v(nameClass,builtUri.toString());
 
                 urlConnection = (HttpURLConnection) url.openConnection();
                 urlConnection.setRequestMethod("GET");

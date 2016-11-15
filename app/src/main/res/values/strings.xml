@@ -6,4 +6,5 @@
     <string name="lp_title_search">Search options</string>
     <string name="lp_key_search">search</string>
     <string name="lp_defaultValue_search">popular</string>
+    <string name="title_activity_detail">DetailActivity</string>
 </resources>
