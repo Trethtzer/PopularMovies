@@ -139,6 +139,10 @@ public class MainActivityFragment extends Fragment {
             final String OWM_RESULT = "results";
             final String OWM_POSTER_PATH = "poster_path";
             final String OWM_ID = "id";
+            final String OWM_AVERAGE = "vote_average";
+            final String OWM_SYNOPSIS = "overview";
+            final String OWM_TITLE = "original_title";
+            final String OWM_DATE = "release_date";
 
             JSONObject moviesJson = new JSONObject(jsonString);
 
@@ -148,8 +152,18 @@ public class MainActivityFragment extends Fragment {
                 JSONObject movieJson = moviesArray.getJSONObject(i);
                 String posterPath = movieJson.getString(OWM_POSTER_PATH);
                 int id = movieJson.getInt(OWM_ID);
+                double average = movieJson.getDouble(OWM_AVERAGE);
+                String synopsis = movieJson.getString(OWM_SYNOPSIS);
+                String title = movieJson.getString(OWM_TITLE);
+                String date = movieJson.getString(OWM_DATE);
 
-                list.add(new Movie(id,"http://image.tmdb.org/t/p/w185/" + posterPath));
+                Movie m = new Movie(id,"http://image.tmdb.org/t/p/w185/" + posterPath);
+                m.setOverview(synopsis);
+                m.setReleaseDate(date);
+                m.setTitle(title);
+                m.setVote_average(average);
+
+                list.add(m);
             }
 
             return list;
