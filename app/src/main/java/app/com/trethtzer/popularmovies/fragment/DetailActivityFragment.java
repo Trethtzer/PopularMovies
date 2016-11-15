@@ -28,7 +28,7 @@ public class DetailActivityFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_detail, container, false);
 
         Bundle bundle = getActivity().getIntent().getExtras();
-        Movie m = (Movie) bundle.getSerializable("movie");
+        Movie m = bundle.getParcelable("movie");
 
         TextView tv1 = (TextView) rootView.findViewById(R.id.title);
         tv1.setText(m.getTitle());

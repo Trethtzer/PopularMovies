@@ -40,6 +40,7 @@ public class MainActivityFragment extends Fragment {
 
     private static MovieAdapter adapter;
     private static String APPKEY_MOVIES = "";
+    private ArrayList<Movie> movies;
 
     public MainActivityFragment() {
     }
@@ -50,7 +51,7 @@ public class MainActivityFragment extends Fragment {
 
         View rootView = inflater.inflate(R.layout.fragment_main, container, false);
 
-        ArrayList<Movie> movies = new ArrayList<>();
+        movies = new ArrayList<>();
 
         adapter = new MovieAdapter(getActivity(),R.layout.item_gridview_movie,movies);
         GridView gv = (GridView) rootView.findViewById(R.id.gridView_summary);
@@ -61,16 +62,27 @@ public class MainActivityFragment extends Fragment {
                 Movie m = (Movie) adapterView.getItemAtPosition(i);
                 Intent intent = new Intent(getActivity(), DetailActivity.class);
                 Bundle bundle = new Bundle();
-                bundle.putSerializable("movie",m);
+                bundle.putParcelable("movie",m);
                 intent.putExtras(bundle);
                 startActivity(intent);
             }
         });
 
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getActivity());
-        new FetchMoviesTask().execute(sp.getString("search",getString(R.string.lp_defaultValue_search)));
+
+        if(savedInstanceState == null || !savedInstanceState.containsKey("movies")){
+            new FetchMoviesTask().execute(sp.getString("search",getString(R.string.lp_defaultValue_search)));
+        }else if(savedInstanceState.containsKey("movies")){
+            movies = savedInstanceState.getParcelableArrayList("movies");
+        }
 
         return rootView;
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outB){
+        outB.putParcelableArrayList("movies",movies);
+        super.onSaveInstanceState(outB);
     }
 
     public class FetchMoviesTask extends AsyncTask<String,Void,ArrayList<Movie>>{
