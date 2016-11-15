@@ -1,10 +1,12 @@
 package app.com.trethtzer.popularmovies.utilities;
 
+import java.io.Serializable;
+
 /**
  * Created by Trethtzer on 13/11/2016.
  */
 
-public class Movie {
+public class Movie implements Serializable{
 
     private int id;
     private String url;

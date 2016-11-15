@@ -60,7 +60,9 @@ public class MainActivityFragment extends Fragment {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Movie m = (Movie) adapterView.getItemAtPosition(i);
                 Intent intent = new Intent(getActivity(), DetailActivity.class);
-                intent.putExtra("title",m.getTitle());
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("movie",m);
+                intent.putExtras(bundle);
                 startActivity(intent);
             }
         });
