@@ -12,12 +12,22 @@ import com.squareup.picasso.Picasso;
 
 import app.com.trethtzer.popularmovies.R;
 import app.com.trethtzer.popularmovies.utilities.Movie;
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.Unbinder;
 
 /**
  * A placeholder fragment containing a simple view.
  */
 public class DetailActivityFragment extends Fragment {
     private String nameClass = "DetailActivityFragment";
+
+    @BindView(R.id.title) TextView title;
+    @BindView(R.id.releaseDate) TextView releaseDate;
+    @BindView(R.id.rate) TextView rate;
+    @BindView(R.id.synopsis) TextView synopsis;
+    @BindView(R.id.imageView_poster_detail) ImageView poster;
+    private Unbinder unbinder;
 
     public DetailActivityFragment() {
     }
@@ -30,19 +40,20 @@ public class DetailActivityFragment extends Fragment {
         Bundle bundle = getActivity().getIntent().getExtras();
         Movie m = bundle.getParcelable("movie");
 
-        TextView tv1 = (TextView) rootView.findViewById(R.id.title);
-        tv1.setText(m.getTitle());
-        TextView tv2 = (TextView) rootView.findViewById(R.id.releaseDate);
-        tv2.setText(m.getReleaseDate());
-        TextView tv3 = (TextView) rootView.findViewById(R.id.rate);
-        tv3.setText("Vote average: " + m.getVote_average());
-        TextView tv4 = (TextView) rootView.findViewById(R.id.synopsis);
-        tv4.setText(m.getOverview());
-
-        ImageView iv = (ImageView) rootView.findViewById(R.id.imageView_poster_detail);
-        Picasso.with(getActivity()).load(m.getUrl()).into(iv);
+        unbinder = ButterKnife.bind(this,rootView);
+        title.setText(m.getTitle());
+        releaseDate.setText(m.getReleaseDate());
+        rate.setText("Vote average: " + m.getVote_average());
+        synopsis.setText(m.getOverview());
+        Picasso.with(getActivity()).load(m.getUrl()).into(poster);
 
 
         return rootView;
+    }
+
+    @Override
+    public void onDestroyView(){
+        super.onDestroyView();
+        unbinder.unbind();
     }
 }

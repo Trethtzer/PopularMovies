@@ -32,6 +32,9 @@ import app.com.trethtzer.popularmovies.DetailActivity;
 import app.com.trethtzer.popularmovies.R;
 import app.com.trethtzer.popularmovies.utilities.Movie;
 import app.com.trethtzer.popularmovies.utilities.MovieAdapter;
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.Unbinder;
 
 /**
  * A placeholder fragment containing a simple view.
@@ -42,6 +45,9 @@ public class MainActivityFragment extends Fragment {
     private static String APPKEY_MOVIES = "";
     private ArrayList<Movie> movies;
     private Bundle sIS;
+
+    @BindView(R.id.gridView_summary) GridView gv;
+    private Unbinder unbinder;
 
     public MainActivityFragment() {
     }
@@ -55,7 +61,7 @@ public class MainActivityFragment extends Fragment {
         movies = new ArrayList<>();
 
         adapter = new MovieAdapter(getActivity(),R.layout.item_gridview_movie,movies);
-        GridView gv = (GridView) rootView.findViewById(R.id.gridView_summary);
+        unbinder = ButterKnife.bind(this,rootView);
         gv.setAdapter(adapter);
         gv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -95,6 +101,12 @@ public class MainActivityFragment extends Fragment {
     public void onSaveInstanceState(Bundle outB){
         outB.putParcelableArrayList("movies",movies);
         super.onSaveInstanceState(outB);
+    }
+
+    @Override
+    public void onDestroyView(){
+        super.onDestroyView();
+        unbinder.unbind();
     }
 
     public class FetchMoviesTask extends AsyncTask<String,Void,ArrayList<Movie>>{

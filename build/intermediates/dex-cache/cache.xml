@@ -48,6 +48,15 @@
     </item>
     <item
         is-multidex="true"
+        jar="C:\Users\Trethtzer\.gradle\caches\modules-2\files-2.1\com.jakewharton\butterknife-annotations\8.4.0\ea392375cf9ff59234a82e7928a204215ccc98cd\butterknife-annotations-8.4.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.3"
+        sha1="ea392375cf9ff59234a82e7928a204215ccc98cd">
+        <dex dex="D:\computer\android udacious\PopularMovies\app\build\intermediates\transforms\dex\debug\folders\1000\10\butterknife-annotations-8.4.0_bdce392bcd7f49cb5a26dec63470db14f00633eb\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
         jar="D:\computer\android udacious\PopularMovies\app\build\intermediates\exploded-aar\com.android.support\support-core-utils\24.2.1\jars\libs\internal_impl-24.2.1.jar"
         jumboMode="true"
         optimize="true"
@@ -135,6 +144,15 @@
         revision="24.0.3"
         sha1="b9a1ac78ad7ef3abedc4a4b30cd92bcacb939d1f">
         <dex dex="D:\computer\android udacious\PopularMovies\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-fragment-24.2.1_5421afec2f86ecd30f1141aca3415604695d758c\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\computer\android udacious\PopularMovies\app\build\intermediates\exploded-aar\com.jakewharton\butterknife\8.4.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.3"
+        sha1="a07818a1ecabdb149998823429cce555af4b9cba">
+        <dex dex="D:\computer\android udacious\PopularMovies\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.jakewharton-butterknife-8.4.0_e757600cead1c99544d6dc67b44286c9e95d826c\classes.dex" />
     </item>
     <item
         is-multidex="true"
