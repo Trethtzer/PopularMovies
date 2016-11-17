@@ -41,6 +41,7 @@ public class MainActivityFragment extends Fragment {
     private static MovieAdapter adapter;
     private static String APPKEY_MOVIES = "";
     private ArrayList<Movie> movies;
+    private Bundle sIS;
 
     public MainActivityFragment() {
     }
@@ -68,15 +69,26 @@ public class MainActivityFragment extends Fragment {
             }
         });
 
-        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getActivity());
-
-        if(savedInstanceState == null || !savedInstanceState.containsKey("movies")){
-            new FetchMoviesTask().execute(sp.getString("search",getString(R.string.lp_defaultValue_search)));
-        }else if(savedInstanceState.containsKey("movies")){
-            movies = savedInstanceState.getParcelableArrayList("movies");
-        }
+        // Deleted content now in onStart method.
+        sIS = savedInstanceState;
 
         return rootView;
+    }
+
+    @Override
+    public void onStart(){
+
+        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getActivity());
+
+        if(sIS == null || !sIS.containsKey("movies")){
+            new FetchMoviesTask().execute(sp.getString("search",getString(R.string.lp_defaultValue_search)));
+        }else if(sIS.containsKey("movies")){
+            movies = sIS.getParcelableArrayList("movies");
+            adapter.clear();
+            adapter.addAll(movies);
+        }
+
+        super.onStart();
     }
 
     @Override
@@ -126,8 +138,10 @@ public class MainActivityFragment extends Fragment {
                     }
                     moviesJsonStr = buffer.toString();
                 }
-            }catch (IOException e){
-                Log.e(nameClass,e.toString());
+            }catch (IOException e) {
+                Log.e(nameClass, e.toString());
+            }catch (SecurityException e){
+                Log.d(nameClass, e.toString());
             }finally {
                 if(urlConnection != null){
                     urlConnection.disconnect();
@@ -150,15 +164,21 @@ public class MainActivityFragment extends Fragment {
         }
 
         protected void onPostExecute(ArrayList<Movie> result) {
-            adapter.clear();
-            for(Movie m : result){
-                adapter.add(m);
+            if(result != null) {
+                movies.clear();
+                for (Movie m : result) {
+                    movies.add(m);
+                }
+                adapter.notifyDataSetChanged();
             }
-            adapter.notifyDataSetChanged();
         }
 
         // Analiza el json y devuelve un arraylist de peliculas.
         protected ArrayList<Movie> getMoviesDataFromJson(String jsonString) throws JSONException{
+
+            if(jsonString == null){ // In this case we don't need to do anything.
+                return null;
+            }
 
             ArrayList<Movie> list = new ArrayList<>();
             final String OWM_RESULT = "results";
