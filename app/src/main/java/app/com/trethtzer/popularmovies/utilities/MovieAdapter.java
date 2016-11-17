@@ -13,6 +13,8 @@ import com.squareup.picasso.Picasso;
 import java.util.List;
 
 import app.com.trethtzer.popularmovies.R;
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 /**
  * Created by Trethtzer on 13/11/2016.
@@ -29,16 +31,28 @@ public class MovieAdapter extends ArrayAdapter<Movie> {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent){
-        Movie movie = getItem(position);
-        View rootView = ((Activity)c).getLayoutInflater().inflate(R.layout.item_gridview_movie,parent,false);
 
-        ImageView iconView = (ImageView) rootView.findViewById(R.id.imageView_item_movie);
-        iconView.setPadding(0,0,0,0);
-        iconView.setImageResource(R.drawable.imagen);
+        ViewHolder holder;
+        if(convertView != null){
+            holder = (ViewHolder) convertView.getTag();
+        }else{
+            convertView = ((Activity)c).getLayoutInflater().inflate(R.layout.item_gridview_movie,parent,false);
+            holder = new ViewHolder(convertView);
+            convertView.setTag(holder);
+        }
+
+        Movie movie = getItem(position);
         Picasso.with(c)
                 .load(movie.getUrl())
-                .into(iconView);
+                .into(holder.image);
 
-        return rootView;
+        return convertView;
+    }
+
+    static class ViewHolder{
+        @BindView(R.id.imageView_item_movie) ImageView image;
+        public ViewHolder(View view){
+            ButterKnife.bind(this,view);
+        }
     }
 }
