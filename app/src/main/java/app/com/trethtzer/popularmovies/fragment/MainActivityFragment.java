@@ -134,6 +134,7 @@ public class MainActivityFragment extends Fragment {
                 Uri builtUri = builder.build();
 
                 URL url = new URL(builtUri.toString());
+                Log.d("La url:",url.toString());
 
                 urlConnection = (HttpURLConnection) url.openConnection();
                 urlConnection.setRequestMethod("GET");
