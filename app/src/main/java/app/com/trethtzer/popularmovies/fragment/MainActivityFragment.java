@@ -42,7 +42,7 @@ import butterknife.Unbinder;
 public class MainActivityFragment extends Fragment {
 
     private static MovieAdapter adapter;
-    private static String APPKEY_MOVIES = "";
+    private static String APPKEY_MOVIES = "0c8ad403f2c28bfcd5449b1dfa968f94";
     private ArrayList<Movie> movies;
     private Bundle sIS;
 

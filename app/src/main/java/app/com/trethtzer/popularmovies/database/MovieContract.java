@@ -28,8 +28,11 @@ public class MovieContract {
         public static final String CONTENT_ITEM_TYPE =
                 ContentResolver.CURSOR_ITEM_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_MOVIE;
 
-        public static Uri buildLocationUri(long id) {
+        public static Uri buildMovieUri(long id) {
             return ContentUris.withAppendedId(CONTENT_URI, id);
+        }
+        public static String getIdMovieFromUri(Uri uri){
+            return uri.getPathSegments().get(1);
         }
 
         public static final String TABLE_NAME = "movies";
