@@ -28,7 +28,7 @@ public class DetailActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
+        getMenuInflater().inflate(R.menu.menu_detail, menu);
         return true;
     }
 
@@ -42,6 +42,9 @@ public class DetailActivity extends AppCompatActivity {
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             startActivity(new Intent(this,SettingsActivity.class));
+        }
+        if(id == R.id.action_favorite){
+            // AQUI AÑADIR/BORRAR A LA BASE DE DATOS Y CAMBIAR EL ESTADO.
         }
 
         return super.onOptionsItemSelected(item);

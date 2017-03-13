@@ -2,17 +2,22 @@ package app.com.trethtzer.popularmovies.fragment;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.Cursor;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.support.v4.app.LoaderManager;
+import android.support.v4.content.CursorLoader;
+import android.support.v4.content.Loader;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.GridView;
+import android.widget.ListView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -30,6 +35,7 @@ import java.util.ArrayList;
 
 import app.com.trethtzer.popularmovies.DetailActivity;
 import app.com.trethtzer.popularmovies.R;
+import app.com.trethtzer.popularmovies.database.MovieContract;
 import app.com.trethtzer.popularmovies.utilities.Movie;
 import app.com.trethtzer.popularmovies.utilities.MovieAdapter;
 import butterknife.BindView;
@@ -39,13 +45,43 @@ import butterknife.Unbinder;
 /**
  * A placeholder fragment containing a simple view.
  */
-public class MainActivityFragment extends Fragment {
+public class MainActivityFragment extends Fragment implements LoaderManager.LoaderCallbacks<Cursor>{
 
     private static MovieAdapter adapter;
-    private static String APPKEY_MOVIES = "0c8ad403f2c28bfcd5449b1dfa968f94";
+    private static String APPKEY_MOVIES = "";
     private ArrayList<Movie> movies;
     private Bundle sIS;
+    private int LOADER_ID = 1005;
 
+    // Comunicacion del fragmento con mainActivity
+    mainActivityCallback mCallback;
+    public interface mainActivityCallback{
+        public void onItemSelected(Uri dateUri);
+    }
+
+    // Para la base de datos
+    private static final String[] MOVIE_COLUMNS = {
+            MovieContract.MovieEntry._ID,
+            MovieContract.MovieEntry.COLUMN_IDMOVIE,
+            MovieContract.MovieEntry.COLUMN_POSTER_PATH,
+            MovieContract.MovieEntry.COLUMN_TITLE,
+            MovieContract.MovieEntry.COLUMN_DATE,
+            MovieContract.MovieEntry.COLUMN_AVERAGE,
+            MovieContract.MovieEntry.COLUMN_SYNOPSIS,
+            MovieContract.MovieEntry.COLUMN_REVIEWS,
+            MovieContract.MovieEntry.COLUMN_VIDEOS
+    };
+    public static final int COL_ID = 0;
+    public static final int COL_IDMOVIE = 1;
+    public static final int COL_POSTER_PATH = 2;
+    public static final int COL_TITLE = 3;
+    public static final int COL_DATE = 4;
+    public static final int COL_AVERAGE = 5;
+    public static final int COL_SYNOPSIS = 6;
+    public static final int COL_REVIEWS = 7;
+    public static final int COL_VIDEOS = 8;
+
+    // Vistas
     @BindView(R.id.gridView_summary) GridView gv;
     private Unbinder unbinder;
 
@@ -87,6 +123,12 @@ public class MainActivityFragment extends Fragment {
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getActivity());
 
         if(sIS == null || !sIS.containsKey("movies")){
+            // Si es favoritos sacamos de la base de datos.
+            if(sp.getString("search",getString(R.string.lp_defaultValue_search)).equals("favorite")){
+                getLoaderManager().restartLoader(LOADER_ID, null, this);
+            }
+
+            // Buscamos en internet.
             new FetchMoviesTask().execute(sp.getString("search",getString(R.string.lp_defaultValue_search)));
         }else if(sIS.containsKey("movies")){
             movies = sIS.getParcelableArrayList("movies");
@@ -107,6 +149,32 @@ public class MainActivityFragment extends Fragment {
     public void onDestroyView(){
         super.onDestroyView();
         unbinder.unbind();
+    }
+
+    @Override
+    public Loader<Cursor> onCreateLoader(int id, Bundle args) {
+        if(id == LOADER_ID){
+            // Sort order:  Ascending, by date.
+            String sortOrder = MovieContract.MovieEntry.COLUMN_AVERAGE + " ASC";
+
+            // Este 1 puede ser sospechoso.
+            Uri moviesUri = MovieContract.MovieEntry.buildMovieUri(1);
+
+            return new CursorLoader(getActivity(),moviesUri,MOVIE_COLUMNS,null,null,sortOrder);
+        }
+
+        return null;
+    }
+
+    @Override
+    public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
+        adapter.swapCursor(data);
+        if(lastPosition != GridView.INVALID_POSITION) gv.smoothScrollToPosition(lastPosition);
+    }
+
+    @Override
+    public void onLoaderReset(Loader<Cursor> loader) {
+        adapter.swapCursor(null);
     }
 
     public class FetchMoviesTask extends AsyncTask<String,Void,ArrayList<Movie>>{

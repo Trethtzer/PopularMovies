@@ -3,181 +3,154 @@
 
     <item
         is-multidex="true"
-        jar="D:\computer\Android nanodegree\PopularMovies\app\build\intermediates\exploded-aar\com.android.support\support-fragment\24.2.1\jars\libs\internal_impl-24.2.1.jar"
+        jar="C:\Users\Trethtzer\.android\build-cache\c8664d9a11beb2d7096040ed264d796aac0fc844\output\jars\classes.jar"
         jumboMode="true"
         optimize="true"
-        revision="24.0.3"
-        sha1="5f64d657e838e8375135c0f6057a7ff8fab6a50e">
-        <dex dex="D:\computer\Android nanodegree\PopularMovies\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-24.2.1_2a57090c5f3d801f0b4f1f6aa6295735148195a1\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="D:\computer\Android nanodegree\PopularMovies\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.3"
-        sha1="4d51795357690d6f45d5f2960d91b04fa0089118">
-        <dex dex="D:\computer\Android nanodegree\PopularMovies\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_98c363658ef1334283361eda10e17dce0a72549f\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="D:\computer\Android nanodegree\PopularMovies\app\build\intermediates\exploded-aar\com.android.support\support-media-compat\24.2.1\jars\libs\internal_impl-24.2.1.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.3"
-        sha1="fbf8da429efd5ad21e02e3e5ecaa1efc4167878d">
-        <dex dex="D:\computer\Android nanodegree\PopularMovies\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-24.2.1_f8aa3350e228b25fd39174fe1be61715f9a6da2b\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="D:\computer\Android nanodegree\PopularMovies\app\build\intermediates\exploded-aar\com.android.support\support-core-ui\24.2.1\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.3"
-        sha1="e7f3132168957eefc46229fc32c3bd464642b71e">
-        <dex dex="D:\computer\Android nanodegree\PopularMovies\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-core-ui-24.2.1_43eded9982402581c3a06750c748944e0af8c39e\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="D:\computer\Android nanodegree\PopularMovies\app\build\intermediates\exploded-aar\com.android.support\support-core-utils\24.2.1\jars\libs\internal_impl-24.2.1.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.3"
-        sha1="935a969265b2a166b2d20415423f5f6e90fe16e0">
-        <dex dex="D:\computer\Android nanodegree\PopularMovies\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-24.2.1_faf58e086419efe0fa4f174a1dc5491356db49cf\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="D:\computer\Android nanodegree\PopularMovies\app\build\intermediates\exploded-aar\com.android.support\support-core-utils\24.2.1\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.3"
+        revision="25.0.0"
         sha1="9c4c3bc902450c39ed54de170db4fb12aea20a35">
-        <dex dex="D:\computer\Android nanodegree\PopularMovies\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-core-utils-24.2.1_4dd75c9983fc0d949be9ec4c2d6a47bab2b0daa4\classes.dex" />
+        <dex dex="D:\computer\Android nanodegree\PopularMovies\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_d45ad5c0d46debb831840fe88af7b8da0ddf861b\classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="D:\computer\Android nanodegree\PopularMovies\app\build\intermediates\exploded-aar\com.android.support\support-fragment\24.2.1\jars\classes.jar"
+        jar="C:\Users\Trethtzer\.android\build-cache\8791d659b12204c743c88fcaadc1ff646bdb381f\output\jars\classes.jar"
         jumboMode="true"
         optimize="true"
-        revision="24.0.3"
-        sha1="b9a1ac78ad7ef3abedc4a4b30cd92bcacb939d1f">
-        <dex dex="D:\computer\Android nanodegree\PopularMovies\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-fragment-24.2.1_11c085a65445d243f19ed2f1f3bbc0d6bf5d3c28\classes.dex" />
+        revision="25.0.0"
+        sha1="e03f47f3d1017a093bb3239d4ec47c3447f40744">
+        <dex dex="D:\computer\Android nanodegree\PopularMovies\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_01fc2daeb0dc0f3426898152475169376a6c0091\classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="D:\computer\Android nanodegree\PopularMovies\app\build\intermediates\exploded-aar\com.android.support\recyclerview-v7\24.2.1\jars\classes.jar"
+        jar="C:\Users\Trethtzer\.android\build-cache\6d2e34faf94946f3243f3340778d0ce8f0460f70\output\jars\classes.jar"
         jumboMode="true"
         optimize="true"
-        revision="24.0.3"
-        sha1="7521486d9bfd2cd9e756e0cf75ed7d97f2ce2d3b">
-        <dex dex="D:\computer\Android nanodegree\PopularMovies\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-recyclerview-v7-24.2.1_ba59630d9029199af567d5cd79b04372bfcbe021\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="D:\computer\Android nanodegree\PopularMovies\app\build\intermediates\exploded-aar\com.android.support\support-v4\24.2.1\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.3"
+        revision="25.0.0"
         sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
-        <dex dex="D:\computer\Android nanodegree\PopularMovies\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-v4-24.2.1_d1101d2a56acc59937a2558dca76fa4b996e4be0\classes.dex" />
+        <dex dex="D:\computer\Android nanodegree\PopularMovies\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_25dc9e1444c3f763bddc0c30be851cfde7ed1ad0\classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="D:\computer\Android nanodegree\PopularMovies\app\build\intermediates\exploded-aar\com.jakewharton\butterknife\8.4.0\jars\classes.jar"
+        jar="C:\Users\Trethtzer\.android\build-cache\79d0bd0520a7772457a45c2480677978085b8d43\output\jars\classes.jar"
         jumboMode="true"
         optimize="true"
-        revision="24.0.3"
-        sha1="a07818a1ecabdb149998823429cce555af4b9cba">
-        <dex dex="D:\computer\Android nanodegree\PopularMovies\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.jakewharton-butterknife-8.4.0_ca1f278c8253607138cf2d4869867e7e889c2dfe\classes.dex" />
+        revision="25.0.0"
+        sha1="09b462bbcb77650284bd6614f1a32f360ef369f8">
+        <dex dex="D:\computer\Android nanodegree\PopularMovies\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_8869717fc3c2a2cac72e7a50f5efd905712e5d19\classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="D:\computer\Android nanodegree\PopularMovies\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\24.2.1\jars\classes.jar"
+        jar="C:\Users\Trethtzer\.android\build-cache\899dee88c916bd20e007ee13114c8821e0313d50\output\jars\classes.jar"
         jumboMode="true"
         optimize="true"
-        revision="24.0.3"
-        sha1="43b2dba6b5a0b14527961b75329d0b90025f15ea">
-        <dex dex="D:\computer\Android nanodegree\PopularMovies\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-appcompat-v7-24.2.1_71fbca1bf934ecb19fca2cccf3f83e977608ed84\classes.dex" />
+        revision="25.0.0"
+        sha1="e7f3132168957eefc46229fc32c3bd464642b71e">
+        <dex dex="D:\computer\Android nanodegree\PopularMovies\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_a0e88f566aa9db2bd4bb12b45fb899bf73d5f48b\classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="D:\computer\Android nanodegree\PopularMovies\app\build\intermediates\exploded-aar\com.android.support\animated-vector-drawable\24.2.1\jars\classes.jar"
+        jar="C:\Users\Trethtzer\.android\build-cache\8e48d3e802139074fc9953e4430757f9b99e74b2\output\jars\classes.jar"
         jumboMode="true"
         optimize="true"
-        revision="24.0.3"
-        sha1="94bc1dfb84dcc8b6f6f8f7cc726d7b2dd39c1574">
-        <dex dex="D:\computer\Android nanodegree\PopularMovies\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-animated-vector-drawable-24.2.1_53a87df802dc9c0980b3230b71244a529770d01c\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="D:\computer\Android nanodegree\PopularMovies\app\build\intermediates\exploded-aar\com.android.support\support-compat\24.2.1\jars\libs\internal_impl-24.2.1.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.3"
-        sha1="7e4389bd133359a2ff88623ff1e4ff93d6e6f780">
-        <dex dex="D:\computer\Android nanodegree\PopularMovies\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-24.2.1_1c766d87a1e91b976428ca533962d25480226650\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="D:\computer\Android nanodegree\PopularMovies\app\build\intermediates\exploded-aar\com.android.support\support-compat\24.2.1\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.3"
-        sha1="0ecb4b595fa0f0f8018a149ace3ea6525624f94e">
-        <dex dex="D:\computer\Android nanodegree\PopularMovies\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-compat-24.2.1_ac9af6e43dcaf594a4d2173feed14e8717a96c09\classes.dex" />
+        revision="25.0.0"
+        sha1="7521486d9bfd2cd9e756e0cf75ed7d97f2ce2d3b">
+        <dex dex="D:\computer\Android nanodegree\PopularMovies\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_c427a30f5793ddea450743e4b0e5c46cb4541615\classes.dex" />
     </item>
     <item
         is-multidex="true"
         jar="C:\Users\Trethtzer\.gradle\caches\modules-2\files-2.1\com.squareup.picasso\picasso\2.5.2\7446d06ec8d4f7ffcc53f1da37c95f200dcb9387\picasso-2.5.2.jar"
         jumboMode="true"
         optimize="true"
-        revision="24.0.3"
+        revision="25.0.0"
         sha1="7446d06ec8d4f7ffcc53f1da37c95f200dcb9387">
         <dex dex="D:\computer\Android nanodegree\PopularMovies\app\build\intermediates\transforms\dex\debug\folders\1000\10\picasso-2.5.2_847fa9973cf41b0d75348403cf37990d4656ed35\classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="D:\computer\Android nanodegree\PopularMovies\app\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\24.2.1\jars\classes.jar"
+        jar="C:\Users\Trethtzer\.android\build-cache\d5420f89a64980912b61564a07487693df13f014\output\jars\libs\internal_impl-24.2.1.jar"
         jumboMode="true"
         optimize="true"
-        revision="24.0.3"
-        sha1="d5c731fc64c03dfe04d51134955b483551c35849">
-        <dex dex="D:\computer\Android nanodegree\PopularMovies\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-vector-drawable-24.2.1_0ab4f25a0c0cf379742697a505d2e4c151b1b12d\classes.dex" />
+        revision="25.0.0"
+        sha1="7e4389bd133359a2ff88623ff1e4ff93d6e6f780">
+        <dex dex="D:\computer\Android nanodegree\PopularMovies\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-24.2.1_836893da7f6f1494adaf17d1ad6115ced17834f1\classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="D:\computer\Android nanodegree\PopularMovies\app\build\intermediates\exploded-aar\com.android.support\support-media-compat\24.2.1\jars\classes.jar"
+        jar="C:\Users\Trethtzer\.android\build-cache\79d0bd0520a7772457a45c2480677978085b8d43\output\jars\libs\internal_impl-24.2.1.jar"
         jumboMode="true"
         optimize="true"
-        revision="24.0.3"
-        sha1="09b462bbcb77650284bd6614f1a32f360ef369f8">
-        <dex dex="D:\computer\Android nanodegree\PopularMovies\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-media-compat-24.2.1_17fa998fc80ee8f13289c55a429426dabbaee073\classes.dex" />
+        revision="25.0.0"
+        sha1="fbf8da429efd5ad21e02e3e5ecaa1efc4167878d">
+        <dex dex="D:\computer\Android nanodegree\PopularMovies\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-24.2.1_b384192e44c70bf2e46aff5199523f3a51745dd1\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Trethtzer\.android\build-cache\c8664d9a11beb2d7096040ed264d796aac0fc844\output\jars\libs\internal_impl-24.2.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="935a969265b2a166b2d20415423f5f6e90fe16e0">
+        <dex dex="D:\computer\Android nanodegree\PopularMovies\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-24.2.1_37ad28c79818fa305dddb4ecf697e13919e1f57c\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\computer\Android nanodegree\PopularMovies\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="7bfb2f45f4790b74bd4f7342de9af5a13ec4d793">
+        <dex dex="D:\computer\Android nanodegree\PopularMovies\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_98c363658ef1334283361eda10e17dce0a72549f\classes.dex" />
     </item>
     <item
         is-multidex="true"
         jar="C:\Users\Trethtzer\.gradle\caches\modules-2\files-2.1\com.jakewharton\butterknife-annotations\8.4.0\ea392375cf9ff59234a82e7928a204215ccc98cd\butterknife-annotations-8.4.0.jar"
         jumboMode="true"
         optimize="true"
-        revision="24.0.3"
+        revision="25.0.0"
         sha1="ea392375cf9ff59234a82e7928a204215ccc98cd">
         <dex dex="D:\computer\Android nanodegree\PopularMovies\app\build\intermediates\transforms\dex\debug\folders\1000\10\butterknife-annotations-8.4.0_bdce392bcd7f49cb5a26dec63470db14f00633eb\classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="D:\computer\Android nanodegree\PopularMovies\app\build\intermediates\exploded-aar\com.android.support\design\24.2.1\jars\classes.jar"
+        jar="C:\Users\Trethtzer\.android\build-cache\88ff105742fe90fef1eb31fea5a5c2951b8278f8\output\jars\classes.jar"
         jumboMode="true"
         optimize="true"
-        revision="24.0.3"
-        sha1="e03f47f3d1017a093bb3239d4ec47c3447f40744">
-        <dex dex="D:\computer\Android nanodegree\PopularMovies\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-design-24.2.1_ec90df62072244bed480963037c5b40444cb616d\classes.dex" />
+        revision="25.0.0"
+        sha1="a07818a1ecabdb149998823429cce555af4b9cba">
+        <dex dex="D:\computer\Android nanodegree\PopularMovies\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_f7ebefe7a2bc6e953371dd7e10351a72d5dfddc5\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Trethtzer\.android\build-cache\3d3546f80a95f5bbcf33695bf6af3445d27419fc\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="94bc1dfb84dcc8b6f6f8f7cc726d7b2dd39c1574">
+        <dex dex="D:\computer\Android nanodegree\PopularMovies\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_c735857e0f0c80a5c0c956357cc87031979cbb13\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Trethtzer\.android\build-cache\0bbeeda64a4f09ae1766f33f6c51209e91582f9e\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="d5c731fc64c03dfe04d51134955b483551c35849">
+        <dex dex="D:\computer\Android nanodegree\PopularMovies\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_e4546d5886330715d915f008a4a374df7dcecf3f\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Trethtzer\.android\build-cache\42d2f3ebe45092d65a69745e16b055220baeb02e\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="43b2dba6b5a0b14527961b75329d0b90025f15ea">
+        <dex dex="D:\computer\Android nanodegree\PopularMovies\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_53e6be1b5fd4cf51e17e7517e1c89fc4185129bd\classes.dex" />
     </item>
     <item
         is-multidex="true"
         jar="C:\Users\Trethtzer\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\24.2.1\support-annotations-24.2.1.jar"
         jumboMode="true"
         optimize="true"
-        revision="24.0.3"
+        revision="25.0.0"
         sha1="8de3aafecbdf98a61db6427f008f2d515bcd2544">
         <dex dex="D:\computer\Android nanodegree\PopularMovies\app\build\intermediates\transforms\dex\debug\folders\1000\10\support-annotations-24.2.1_9c8cd287844c9f62707c081b6097dd24ff9afb48\classes.dex" />
     </item>
@@ -186,18 +159,45 @@
         jar="D:\computer\Android nanodegree\PopularMovies\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
         jumboMode="true"
         optimize="true"
-        revision="24.0.3"
-        sha1="d5871d780ec1ef1fdc49f3ecc601350fa2ab3447">
-        <dex dex="D:\computer\Android nanodegree\PopularMovies\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run_308392a8a75955f3c9c7be615202bae8b605b685\classes.dex" />
+        revision="25.0.0"
+        sha1="c82741bc129dd5f99f11a4ab8666ae24262053b6">
+        <dex dex="D:\computer\Android nanodegree\PopularMovies\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run_308392a8a75955f3c9c7be615202bae8b605b685\classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="D:\computer\Android nanodegree\PopularMovies\app\build\intermediates\exploded-aar\com.android.support\support-core-ui\24.2.1\jars\libs\internal_impl-24.2.1.jar"
+        jar="C:\Users\Trethtzer\.android\build-cache\d5420f89a64980912b61564a07487693df13f014\output\jars\classes.jar"
         jumboMode="true"
         optimize="true"
-        revision="24.0.3"
+        revision="25.0.0"
+        sha1="0ecb4b595fa0f0f8018a149ace3ea6525624f94e">
+        <dex dex="D:\computer\Android nanodegree\PopularMovies\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_2ca7309792611192e0103b3e0aa625f0aa3b9fd1\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Trethtzer\.android\build-cache\e8523fe3d29398f05b17434700fe3cd213484411\output\jars\libs\internal_impl-24.2.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="5f64d657e838e8375135c0f6057a7ff8fab6a50e">
+        <dex dex="D:\computer\Android nanodegree\PopularMovies\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-24.2.1_463fcf73ad6be059ce29e001eb7b0d9c1e50e320\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Trethtzer\.android\build-cache\899dee88c916bd20e007ee13114c8821e0313d50\output\jars\libs\internal_impl-24.2.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
         sha1="867dad63c33388ff8c7644b236579355036d075f">
-        <dex dex="D:\computer\Android nanodegree\PopularMovies\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-24.2.1_1afdf9e3c1cda408d7c9003096bc614f3159f6fe\classes.dex" />
+        <dex dex="D:\computer\Android nanodegree\PopularMovies\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-24.2.1_3ecaba9908b9f0e00bf7b0e02e6f9ccf65a7bff4\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Trethtzer\.android\build-cache\e8523fe3d29398f05b17434700fe3cd213484411\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="b9a1ac78ad7ef3abedc4a4b30cd92bcacb939d1f">
+        <dex dex="D:\computer\Android nanodegree\PopularMovies\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_0feb792cc02228b69bbc99e60fe84ad2aaffec52\classes.dex" />
     </item>
 
 </items>
