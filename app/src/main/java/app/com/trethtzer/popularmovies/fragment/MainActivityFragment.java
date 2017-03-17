@@ -48,7 +48,7 @@ import butterknife.Unbinder;
 public class MainActivityFragment extends Fragment implements LoaderManager.LoaderCallbacks<Cursor>{
 
     private static MovieAdapter adapter;
-    private static String APPKEY_MOVIES = "";
+    private static String APPKEY_MOVIES = "0c8ad403f2c28bfcd5449b1dfa968f94";
     private ArrayList<Movie> movies;
     private Bundle sIS;
     private int LOADER_ID = 1005;
@@ -96,7 +96,7 @@ public class MainActivityFragment extends Fragment implements LoaderManager.Load
 
         movies = new ArrayList<>();
 
-        adapter = new MovieAdapter(getActivity(),R.layout.item_gridview_movie,movies);
+        adapter = new MovieAdapter(getActivity(),null,0);
         unbinder = ButterKnife.bind(this,rootView);
         gv.setAdapter(adapter);
         gv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
