@@ -17,7 +17,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.GridView;
-import android.widget.ListView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -27,17 +26,15 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.lang.reflect.Array;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.net.URLConnection;
 import java.util.ArrayList;
 
 import app.com.trethtzer.popularmovies.DetailActivity;
 import app.com.trethtzer.popularmovies.R;
 import app.com.trethtzer.popularmovies.database.MovieContract;
 import app.com.trethtzer.popularmovies.utilities.Movie;
-import app.com.trethtzer.popularmovies.utilities.MovieAdapter;
+import app.com.trethtzer.popularmovies.utilities.MovieAdapterCursor;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
@@ -47,7 +44,7 @@ import butterknife.Unbinder;
  */
 public class MainActivityFragment extends Fragment implements LoaderManager.LoaderCallbacks<Cursor>{
 
-    private static MovieAdapter adapter;
+    private static MovieAdapterCursor adapter;
     private static String APPKEY_MOVIES = "0c8ad403f2c28bfcd5449b1dfa968f94";
     private ArrayList<Movie> movies;
     private Bundle sIS;
@@ -96,7 +93,7 @@ public class MainActivityFragment extends Fragment implements LoaderManager.Load
 
         movies = new ArrayList<>();
 
-        adapter = new MovieAdapter(getActivity(),null,0);
+        adapter = new MovieAdapterCursor(getActivity(),null,0);
         unbinder = ButterKnife.bind(this,rootView);
         gv.setAdapter(adapter);
         gv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
