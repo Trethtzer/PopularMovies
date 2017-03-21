@@ -34,6 +34,7 @@ import app.com.trethtzer.popularmovies.DetailActivity;
 import app.com.trethtzer.popularmovies.R;
 import app.com.trethtzer.popularmovies.database.MovieContract;
 import app.com.trethtzer.popularmovies.utilities.Movie;
+import app.com.trethtzer.popularmovies.utilities.MovieAdapter;
 import app.com.trethtzer.popularmovies.utilities.MovieAdapterCursor;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -44,11 +45,13 @@ import butterknife.Unbinder;
  */
 public class MainActivityFragment extends Fragment implements LoaderManager.LoaderCallbacks<Cursor>{
 
-    private static MovieAdapterCursor adapter;
+    private static MovieAdapterCursor adapterCursor;
+    private static MovieAdapter adapter;
     private static String APPKEY_MOVIES = "0c8ad403f2c28bfcd5449b1dfa968f94";
     private ArrayList<Movie> movies;
     private Bundle sIS;
     private int LOADER_ID = 1005;
+    private int lastPosition;
 
     // Comunicacion del fragmento con mainActivity
     mainActivityCallback mCallback;
@@ -92,21 +95,37 @@ public class MainActivityFragment extends Fragment implements LoaderManager.Load
         View rootView = inflater.inflate(R.layout.fragment_main, container, false);
 
         movies = new ArrayList<>();
+        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getActivity());
 
-        adapter = new MovieAdapterCursor(getActivity(),null,0);
         unbinder = ButterKnife.bind(this,rootView);
-        gv.setAdapter(adapter);
-        gv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Movie m = (Movie) adapterView.getItemAtPosition(i);
-                Intent intent = new Intent(getActivity(), DetailActivity.class);
-                Bundle bundle = new Bundle();
-                bundle.putParcelable("movie",m);
-                intent.putExtras(bundle);
-                startActivity(intent);
-            }
-        });
+        // Si tenemos que buscar en la base de datos...
+        if(sp.getString("search",getString(R.string.lp_defaultValue_search)).equals("favorite")) {
+            adapterCursor = new MovieAdapterCursor(getActivity(), null, 0);
+            gv.setAdapter(adapterCursor);
+            gv.setOnItemClickListener((new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                    Cursor cursor = (Cursor) adapterView.getItemAtPosition(i);
+                    if(cursor != null){
+                        mCallback.onItemSelected(MovieContract.MovieEntry.buildMovieUri(cursor.getLong(COL_IDMOVIE)));
+                    }
+                }
+            }));
+        }else{
+            adapter = new MovieAdapter(getActivity(),R.layout.item_gridview_movie,movies);
+            gv.setAdapter(adapter);
+            gv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                    Movie m = (Movie) adapterView.getItemAtPosition(i);
+                    Intent intent = new Intent(getActivity(), DetailActivity.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putParcelable("movie",m);
+                    intent.putExtras(bundle);
+                    startActivity(intent);
+                }
+            });
+        }
 
         // Deleted content now in onStart method.
         sIS = savedInstanceState;
@@ -123,11 +142,14 @@ public class MainActivityFragment extends Fragment implements LoaderManager.Load
             // Si es favoritos sacamos de la base de datos.
             if(sp.getString("search",getString(R.string.lp_defaultValue_search)).equals("favorite")){
                 getLoaderManager().restartLoader(LOADER_ID, null, this);
-            }
 
+            }
             // Buscamos en internet.
-            new FetchMoviesTask().execute(sp.getString("search",getString(R.string.lp_defaultValue_search)));
+            else {
+                new FetchMoviesTask().execute(sp.getString("search", getString(R.string.lp_defaultValue_search)));
+            }
         }else if(sIS.containsKey("movies")){
+            // lastPosition = sIS.getInt("position");
             movies = sIS.getParcelableArrayList("movies");
             adapter.clear();
             adapter.addAll(movies);
@@ -165,13 +187,13 @@ public class MainActivityFragment extends Fragment implements LoaderManager.Load
 
     @Override
     public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
-        adapter.swapCursor(data);
+        adapterCursor.swapCursor(data);
         if(lastPosition != GridView.INVALID_POSITION) gv.smoothScrollToPosition(lastPosition);
     }
 
     @Override
     public void onLoaderReset(Loader<Cursor> loader) {
-        adapter.swapCursor(null);
+        adapterCursor.swapCursor(null);
     }
 
     public class FetchMoviesTask extends AsyncTask<String,Void,ArrayList<Movie>>{
