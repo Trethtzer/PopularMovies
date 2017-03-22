@@ -142,7 +142,6 @@ public class MainActivityFragment extends Fragment implements LoaderManager.Load
             // Si es favoritos sacamos de la base de datos.
             if(sp.getString("search",getString(R.string.lp_defaultValue_search)).equals("favorite")){
                 getLoaderManager().restartLoader(LOADER_ID, null, this);
-
             }
             // Buscamos en internet.
             else {
@@ -152,6 +151,8 @@ public class MainActivityFragment extends Fragment implements LoaderManager.Load
             // lastPosition = sIS.getInt("position");
             movies = sIS.getParcelableArrayList("movies");
             adapter.clear();
+            // IN case the other adapter was working...
+            gv.setAdapter(adapter);
             adapter.addAll(movies);
         }
 
@@ -175,20 +176,16 @@ public class MainActivityFragment extends Fragment implements LoaderManager.Load
         if(id == LOADER_ID){
             // Sort order:  Ascending, by date.
             String sortOrder = MovieContract.MovieEntry.COLUMN_AVERAGE + " ASC";
-
-            // Este 1 puede ser sospechoso.
-            Uri moviesUri = MovieContract.MovieEntry.buildMovieUri(1);
-
+            Uri moviesUri = MovieContract.MovieEntry.buildMovieUri();
             return new CursorLoader(getActivity(),moviesUri,MOVIE_COLUMNS,null,null,sortOrder);
         }
-
         return null;
     }
 
     @Override
     public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
         adapterCursor.swapCursor(data);
-        if(lastPosition != GridView.INVALID_POSITION) gv.smoothScrollToPosition(lastPosition);
+        // if(lastPosition != GridView.INVALID_POSITION) gv.smoothScrollToPosition(lastPosition);
     }
 
     @Override

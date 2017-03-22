@@ -1,6 +1,7 @@
 package app.com.trethtzer.popularmovies;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -12,7 +13,9 @@ import android.view.MenuItem;
 
 import com.squareup.picasso.Picasso;
 
-public class MainActivity extends AppCompatActivity {
+import app.com.trethtzer.popularmovies.fragment.MainActivityFragment;
+
+public class MainActivity extends AppCompatActivity implements MainActivityFragment.mainActivityCallback{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,5 +45,10 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void onItemSelected(Uri dateUri){
+        Intent intent = new Intent(this, DetailActivity.class).setData(dateUri);
+        startActivity(intent);
     }
 }
