@@ -8,6 +8,7 @@ import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -28,6 +29,7 @@ import butterknife.Unbinder;
 public class DetailActivityFragment extends Fragment implements LoaderManager.LoaderCallbacks<Cursor>{
 
     private String nameClass = "DetailActivityFragment";
+    private Movie;
 
 
     private Uri uriIntent;
@@ -84,7 +86,7 @@ public class DetailActivityFragment extends Fragment implements LoaderManager.Lo
         Bundle bundle = getActivity().getIntent().getExtras();
 
         if(bundle.get("movie") != null){
-            Movie m = bundle.getParcelable("movie");
+            movieDetail = bundle.getParcelable("movie");
             title.setText(m.getTitle());
             releaseDate.setText(m.getReleaseDate());
             rate.setText("Vote average: " + m.getVote_average());
@@ -102,6 +104,15 @@ public class DetailActivityFragment extends Fragment implements LoaderManager.Lo
     public void onDestroyView(){
         super.onDestroyView();
         unbinder.unbind();
+    }
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+        if(R.id.action_favorite == item.getItemId()){
+            // Escribimos/borramos de la base de datos.
+        }
+        return super.onOptionsItemSelected(item);
     }
 
 

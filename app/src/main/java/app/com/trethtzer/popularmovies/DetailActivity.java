@@ -43,9 +43,6 @@ public class DetailActivity extends AppCompatActivity {
         if (id == R.id.action_settings) {
             startActivity(new Intent(this,SettingsActivity.class));
         }
-        if(id == R.id.action_favorite){
-            // AQUI AÑADIR/BORRAR A LA BASE DE DATOS Y CAMBIAR EL ESTADO.
-        }
 
         return super.onOptionsItemSelected(item);
     }
