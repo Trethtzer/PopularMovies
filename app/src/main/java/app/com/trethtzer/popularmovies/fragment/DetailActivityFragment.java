@@ -13,6 +13,7 @@ import android.support.v4.content.Loader;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -124,7 +125,18 @@ public class DetailActivityFragment extends Fragment implements LoaderManager.Lo
                 Picasso.with(getActivity()).load(movieDetail.getPosterPath()).into(poster);
             }
         }else{
-            uriIntent = getActivity().getIntent().getData();
+            if(savedInstanceState != null){
+                if(savedInstanceState.containsKey("movie")){
+                    movieDetail = savedInstanceState.getParcelable("movie");
+                    title.setText(movieDetail.getTitle());
+                    releaseDate.setText(movieDetail.getDate());
+                    rate.setText("Vote average: " + movieDetail.getAverage());
+                    synopsis.setText(movieDetail.getSynopsis());
+                    Picasso.with(getActivity()).load(movieDetail.getPosterPath()).into(poster);
+                }
+            }else {
+                uriIntent = getActivity().getIntent().getData();
+            }
         }
 
         // Creamos las listas
@@ -165,6 +177,12 @@ public class DetailActivityFragment extends Fragment implements LoaderManager.Lo
         unbinder.unbind();
     }
 
+    @Override
+    public void onSaveInstanceState(Bundle outB){
+        outB.putParcelable("movie",movieDetail);
+        super.onSaveInstanceState(outB);
+    }
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item){
@@ -180,7 +198,6 @@ public class DetailActivityFragment extends Fragment implements LoaderManager.Lo
             movieValues.put(MovieContract.MovieEntry.COLUMN_REVIEWS,movieDetail.getReviews());
             movieValues.put(MovieContract.MovieEntry.COLUMN_VIDEOS,movieDetail.getVideos());
             getContext().getContentResolver().insert(MovieContract.MovieEntry.buildMovieUri(Long.getLong(movieDetail.getIdMovie())),movieValues);
-            Toast.makeText(getActivity(),"parece que todo se ha guardado",Toast.LENGTH_LONG).show();
             return true;
         }
         return super.onOptionsItemSelected(item);
@@ -209,8 +226,6 @@ public class DetailActivityFragment extends Fragment implements LoaderManager.Lo
     @Override
     public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
         if (!data.moveToFirst()) { return; }
-
-        Toast.makeText(getActivity(),data.getString(0) + " " + data.getString(1) + " " + data.getString(2),Toast.LENGTH_LONG).show();
 
         movieDetail.setId(data.getInt(COL_ID));
         movieDetail.setTitle(data.getString(COL_TITLE));
@@ -261,8 +276,6 @@ public class DetailActivityFragment extends Fragment implements LoaderManager.Lo
                 result = result + c;
             }
         }
-        Log.d("videosList: ",videosList.get(0));
-        Log.d("reviewList: ",reviewsList.get(0));
     }
 
     public class FetchVideosAndReviewsTask extends AsyncTask<String,Void,ArrayList<String>> {

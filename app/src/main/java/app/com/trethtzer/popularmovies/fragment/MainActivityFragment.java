@@ -154,9 +154,13 @@ public class MainActivityFragment extends Fragment implements LoaderManager.Load
             // lastPosition = sIS.getInt("position");
             movies = sIS.getParcelableArrayList("movies");
             adapter.clear();
-            // IN case the other adapter was working...
-            gv.setAdapter(adapter);
-            adapter.addAll(movies);
+            if(movies.isEmpty()){
+                getLoaderManager().restartLoader(LOADER_ID, null, this);
+                gv.setAdapter(adapterCursor);
+            }else {
+                gv.setAdapter(adapter);
+                adapter.addAll(movies);
+            }
         }
 
         super.onStart();
