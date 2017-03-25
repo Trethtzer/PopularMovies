@@ -43,7 +43,7 @@ public class MovieAdapter extends ArrayAdapter<Movie> {
 
         Movie movie = getItem(position);
         Picasso.with(c)
-                .load(movie.getUrl())
+                .load(movie.getPosterPath())
                 .into(holder.image);
 
         return convertView;

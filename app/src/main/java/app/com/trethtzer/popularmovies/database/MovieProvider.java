@@ -94,9 +94,9 @@ public class MovieProvider extends ContentProvider{
         Uri returnUri;
 
         switch(match){
-            case MOVIES:
+            case ONE_MOVIE:
                 long _id = db.insert(MovieContract.MovieEntry.TABLE_NAME, null, values);
-                if( _id > 0 ) returnUri = MovieContract.MovieEntry.buildMovieUri(_id);
+                if( _id >= 0 ) returnUri = MovieContract.MovieEntry.buildMovieUri(_id);
                 else throw new android.database.SQLException("Failed to insert row into " + uri);
                 break;
             default:
@@ -116,6 +116,12 @@ public class MovieProvider extends ContentProvider{
         switch(match){
             case MOVIES:
                 _id = db.delete(MovieContract.MovieEntry.TABLE_NAME, selection,selectionArgs);
+                break;
+            case ONE_MOVIE:
+                String id_movie = MovieContract.MovieEntry.getIdMovieFromUri(uri);
+                _id = db.delete(MovieContract.MovieEntry.TABLE_NAME,
+                        MovieContract.MovieEntry.COLUMN_IDMOVIE + " = ?",
+                        new String[]{id_movie});
                 break;
             default:
                 throw new UnsupportedOperationException("Unknown uri: " + uri);

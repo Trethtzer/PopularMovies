@@ -17,6 +17,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.GridView;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -107,7 +108,9 @@ public class MainActivityFragment extends Fragment implements LoaderManager.Load
                 public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                     Cursor cursor = (Cursor) adapterView.getItemAtPosition(i);
                     if(cursor != null){
-                        mCallback.onItemSelected(MovieContract.MovieEntry.buildMovieUri(cursor.getLong(COL_IDMOVIE)));
+                        Uri dateUri = MovieContract.MovieEntry.buildMovieUri(cursor.getLong(COL_IDMOVIE));
+                        Intent intent = new Intent(getActivity(), DetailActivity.class).setData(dateUri);
+                        startActivity(intent);
                     }
                 }
             }));
@@ -185,7 +188,6 @@ public class MainActivityFragment extends Fragment implements LoaderManager.Load
     @Override
     public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
         adapterCursor.swapCursor(data);
-        // if(lastPosition != GridView.INVALID_POSITION) gv.smoothScrollToPosition(lastPosition);
     }
 
     @Override
@@ -300,10 +302,11 @@ public class MainActivityFragment extends Fragment implements LoaderManager.Load
                 String date = movieJson.getString(OWM_DATE);
 
                 Movie m = new Movie(id,"http://image.tmdb.org/t/p/w185/" + posterPath);
-                m.setOverview(synopsis);
-                m.setReleaseDate(date);
+                m.setIdMovie(Integer.toString(id));
+                m.setSynopsis(synopsis);
+                m.setDate(date);
                 m.setTitle(title);
-                m.setVote_average(average);
+                m.setAverage(Double.toString(average));
 
                 list.add(m);
             }

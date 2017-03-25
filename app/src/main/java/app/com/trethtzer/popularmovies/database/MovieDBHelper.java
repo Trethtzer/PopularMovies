@@ -11,7 +11,7 @@ import app.com.trethtzer.popularmovies.database.MovieContract.MovieEntry;
 
 public class MovieDBHelper extends SQLiteOpenHelper{
 
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 3;
 
     static final String DATABASE_NAME = "movie.db";
 
@@ -22,15 +22,15 @@ public class MovieDBHelper extends SQLiteOpenHelper{
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase){
         final String SQL_CREATE_MOVIE_TABLE = "CREATE TABLE " + MovieEntry.TABLE_NAME + " (" +
-                MovieEntry._ID + "INTEGER PRIMARY KEY AUTOINCREMENT," +
+                MovieEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
                 MovieEntry.COLUMN_IDMOVIE + " TEXT NOT NULL, " +
                 MovieEntry.COLUMN_POSTER_PATH + " TEXT NOT NULL, " +
                 MovieEntry.COLUMN_TITLE + " TEXT NOT NULL, " +
                 MovieEntry.COLUMN_DATE + " TEXT NOT NULL, " +
                 MovieEntry.COLUMN_AVERAGE + " TEXT NOT NULL, " +
                 MovieEntry.COLUMN_SYNOPSIS + " TEXT NOT NULL, " +
-                MovieEntry.COLUMN_VIDEOS + " TEXT NOT NULL, " +
-                MovieEntry.COLUMN_REVIEWS + " TEXT NOT NULL); ";
+                MovieEntry.COLUMN_VIDEOS + " TEXT, " +
+                MovieEntry.COLUMN_REVIEWS + " TEXT); ";
 
         sqLiteDatabase.execSQL(SQL_CREATE_MOVIE_TABLE);
     }

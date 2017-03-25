@@ -12,23 +12,33 @@ import java.io.Serializable;
 public class Movie implements Parcelable {
 
     private int id;
-    private String url;
+    private String idMovie;
+    private String posterPath;
     private String title;
-    private String overview;
-    private String releaseDate;
-    private double vote_average;
+    private String synopsis;
+    private String date;
+    private String average;
+    private String reviews;
+    private String videos;
 
+
+    public Movie(){}
     public Movie(int id,String url){
         this.id = id;
-        this.url = url;
+        posterPath = url;
     }
+
     public Movie(Parcel p){
         id = p.readInt();
-        url = p.readString();
+        idMovie = p.readString();
+        posterPath = p.readString();
         title = p.readString();
-        overview = p.readString();
-        releaseDate = p.readString();
-        vote_average = p.readDouble();
+        synopsis = p.readString();
+        date = p.readString();
+        average = p.readString();
+        reviews = p.readString();
+        videos = p.readString();
+
     }
 
     public int getId() {
@@ -37,35 +47,53 @@ public class Movie implements Parcelable {
     public void setId(int id) {
         this.id = id;
     }
-    public String getUrl() {
-        return url;
-    }
-    public void setUrl(String url) {
-        this.url = url;
-    }
     public String getTitle() {
         return title;
     }
     public void setTitle(String title) {
         this.title = title;
     }
-    public String getOverview() {
-        return overview;
+    public String getIdMovie() {
+        return idMovie;
     }
-    public void setOverview(String overview) {
-        this.overview = overview;
+    public void setIdMovie(String idMovie) {
+        this.idMovie = idMovie;
     }
-    public String getReleaseDate() {
-        return releaseDate;
+    public String getPosterPath() {
+        return posterPath;
     }
-    public void setReleaseDate(String releaseDate) {
-        this.releaseDate = releaseDate;
+    public void setPosterPath(String posterPath) {
+        this.posterPath = posterPath;
     }
-    public double getVote_average() {
-        return vote_average;
+    public String getSynopsis() {
+        return synopsis;
     }
-    public void setVote_average(double vote_average) {
-        this.vote_average = vote_average;
+    public void setSynopsis(String synopsis) {
+        this.synopsis = synopsis;
+    }
+    public String getDate() {
+        return date;
+    }
+    public void setDate(String date) {
+        this.date = date;
+    }
+    public String getAverage() {
+        return average;
+    }
+    public void setAverage(String average) {
+        this.average = average;
+    }
+    public String getReviews() {
+        return reviews;
+    }
+    public void setReviews(String reviews) {
+        this.reviews = reviews;
+    }
+    public String getVideos() {
+        return videos;
+    }
+    public void setVideos(String videos) {
+        this.videos = videos;
     }
 
     @Override
@@ -74,17 +102,20 @@ public class Movie implements Parcelable {
     }
 
     public String toString(){
-        return title + "\nID: " + id;
+        return title + "\nID: " + idMovie;
     }
 
     @Override
     public void writeToParcel(Parcel parcel, int i){
         parcel.writeInt(id);
-        parcel.writeString(url);
+        parcel.writeString(idMovie);
+        parcel.writeString(posterPath);
         parcel.writeString(title);
-        parcel.writeString(overview);
-        parcel.writeString(releaseDate);
-        parcel.writeDouble(vote_average);
+        parcel.writeString(synopsis);
+        parcel.writeString(date);
+        parcel.writeString(average);
+        parcel.writeString(reviews);
+        parcel.writeString(videos);
     }
 
     public final static Parcelable.Creator<Movie> CREATOR = new Parcelable.Creator<Movie>(){
