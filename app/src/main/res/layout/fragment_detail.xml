@@ -21,9 +21,11 @@
             android:text="TextViewTextViewTextViewTextViewTextViewTextView"
             android:layout_width="130dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:layout_marginLeft="10dp"
-            android:id="@+id/title" />
+            android:id="@+id/title"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginTop="30dp"
+            android:gravity="center"/>
 
         <ImageView
             android:layout_width="150dp"
@@ -38,32 +40,43 @@
             android:text="TextViewTextViewTextViewTextViewTextViewTextViewTextView"
             android:layout_width="130dp"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/title"
-            android:layout_marginTop="45dp"
-            android:layout_marginLeft="10dp"
-            android:layout_alignParentLeft="true"
             android:id="@+id/releaseDate"
-             />
+            android:layout_marginTop="100dp"
+            android:layout_alignLeft="@+id/title"
+            android:gravity="center"/>
 
         <TextView
             android:text="TextViewTextViewTextViewTextViewTextViewTextView"
             android:layout_width="130dp"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/releaseDate"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_marginTop="45dp"
-            android:layout_marginLeft="10dp"
-            android:id="@+id/rate" />
+            android:id="@+id/rate"
+            android:layout_alignLeft="@+id/title"
+            android:layout_marginTop="170dp"
+            android:gravity="center" />
 
         <TextView
             android:text="TextViewTextViewTextViewTextViewTextViewTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/imageView_poster_detail"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="30dp"
-            android:id="@+id/synopsis" />
+            android:id="@+id/synopsis"
+            android:layout_below="@+id/rate"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="40dp" />
+
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/lista_trailers"
+            android:layout_below="@id/synopsis"
+            android:layout_marginTop="15dp"/>
+
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/lista_reviews"
+            android:layout_below="@id/lista_trailers"
+            android:layout_marginTop="15dp"/>
 
     </RelativeLayout>
 

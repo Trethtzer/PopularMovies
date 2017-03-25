@@ -1,26 +1,47 @@
 package app.com.trethtzer.popularmovies.fragment;
 
 import android.content.ContentValues;
+import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.util.ArrayList;
+
+import app.com.trethtzer.popularmovies.DetailActivity;
 import app.com.trethtzer.popularmovies.R;
 import app.com.trethtzer.popularmovies.database.MovieContract;
 import app.com.trethtzer.popularmovies.utilities.Movie;
+import app.com.trethtzer.popularmovies.utilities.ReviewAdapter;
+import app.com.trethtzer.popularmovies.utilities.Utility;
+import app.com.trethtzer.popularmovies.utilities.VideoAdapter;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
@@ -32,6 +53,11 @@ public class DetailActivityFragment extends Fragment implements LoaderManager.Lo
 
     private String nameClass = "DetailActivityFragment";
     public static Movie movieDetail = new Movie();
+    private static String APPKEY_MOVIES = "";
+    public static ArrayList<String> videosList;
+    public static ArrayList<String> reviewsList;
+    public static VideoAdapter vAdapter;
+    public static ReviewAdapter rAdapter;
 
 
     private Uri uriIntent;
@@ -63,6 +89,8 @@ public class DetailActivityFragment extends Fragment implements LoaderManager.Lo
     @BindView(R.id.rate) TextView rate;
     @BindView(R.id.synopsis) TextView synopsis;
     @BindView(R.id.imageView_poster_detail) ImageView poster;
+    @BindView(R.id.lista_trailers) ListView trailers;
+    @BindView(R.id.lista_reviews) ListView reviews;
     private Unbinder unbinder;
 
 
@@ -98,6 +126,34 @@ public class DetailActivityFragment extends Fragment implements LoaderManager.Lo
         }else{
             uriIntent = getActivity().getIntent().getData();
         }
+
+        // Creamos las listas
+        videosList = new ArrayList<>();
+        vAdapter = new VideoAdapter(getActivity(),R.id.item_listView,videosList);
+        trailers.setAdapter(vAdapter);
+        trailers.setOnItemClickListener((new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                String s = (String) adapterView.getItemAtPosition(i);
+                // Hacemos intent a youtube con el String.
+                // Toast.makeText(getActivity(), s,Toast.LENGTH_LONG).show();
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.youtube.com/watch?v=" + s)));
+            }
+        }));
+        reviewsList = new ArrayList<>();
+        rAdapter = new ReviewAdapter(getActivity(),R.id.item_listView,reviewsList);
+        reviews.setAdapter(rAdapter);
+        reviews.setOnItemClickListener((new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                String s = (String) adapterView.getItemAtPosition(i);
+                // Hacemos intent a pagina web.
+                // Toast.makeText(getActivity(), s,Toast.LENGTH_LONG).show();
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(Utility.getUrl(s))));
+            }
+        }));
+
+        new FetchVideosAndReviewsTask().execute(movieDetail.getIdMovie());
 
         return rootView;
     }
@@ -175,4 +231,224 @@ public class DetailActivityFragment extends Fragment implements LoaderManager.Lo
     }
     @Override
     public void onLoaderReset(Loader<Cursor> loader) {}
+
+    public void setVideosAndReviews(){
+        String videos = movieDetail.getVideos();
+        String reviews = movieDetail.getReviews();
+        boolean author = false;
+
+        String result = "";
+        for(int i = 0; i < videos.length(); i++){
+            char c = videos.charAt(i);
+            if(c == ';'){
+                videosList.add(result.toString()); // Para evitar que cambie al cambiar result.
+                result = "";
+            }else{
+                result = result + c;
+            }
+        }
+        result = "";
+        for(int i = 0; i < reviews.length(); i++){
+            char c = reviews.charAt(i);
+            if(c == ';' && author == false){
+                reviewsList.add(result.toString());
+                result = "";
+            }else if(c == '-'){
+                author = true;
+                result = result + c;
+            }else{
+                author = false;
+                result = result + c;
+            }
+        }
+        Log.d("videosList: ",videosList.get(0));
+        Log.d("reviewList: ",reviewsList.get(0));
+    }
+
+    public class FetchVideosAndReviewsTask extends AsyncTask<String,Void,ArrayList<String>> {
+
+        private String nameClass = "FetchMoviesTask";
+
+        public ArrayList<String> doInBackground(String... params){
+            // No params
+            if(params == null){
+                return null;
+            }
+
+            HttpURLConnection urlConnection = null;
+            BufferedReader bReader = null;
+            String moviesVideosJsonStr = null;
+            String moviesReviewsJsonStr = null;
+
+            try {
+                Uri.Builder builder = new Uri.Builder();
+                builder.scheme("http")
+                        .authority("api.themoviedb.org")
+                        .appendPath("3")
+                        .appendPath("movie")
+                        .appendPath(params[0])
+                        .appendPath("videos")
+                        .appendQueryParameter("api_key",APPKEY_MOVIES);
+                Uri builtUri = builder.build();
+
+                URL url = new URL(builtUri.toString());
+                Log.d("La url:",url.toString());
+
+                urlConnection = (HttpURLConnection) url.openConnection();
+                urlConnection.setRequestMethod("GET");
+                urlConnection.connect();
+
+                InputStream inputStream = urlConnection.getInputStream();
+                StringBuffer buffer = new StringBuffer();
+                if(inputStream != null) {
+                    bReader = new BufferedReader(new InputStreamReader(inputStream));
+
+                    String line;
+                    while ((line = bReader.readLine()) != null) {
+                        buffer.append(line + "\n");
+                    }
+                    moviesVideosJsonStr = buffer.toString();
+                }
+            }catch (IOException e) {
+                Log.e(nameClass, e.toString());
+            }catch (SecurityException e){
+                Log.d(nameClass, e.toString());
+            }finally {
+                if(urlConnection != null){
+                    urlConnection.disconnect();
+                }
+                if(bReader != null){
+                    try{
+                        bReader.close();
+                    }catch (IOException e){
+                        Log.e(nameClass,e.toString());
+                    }
+                }
+            }
+
+            try {
+                Uri.Builder builder = new Uri.Builder();
+                builder.scheme("http")
+                        .authority("api.themoviedb.org")
+                        .appendPath("3")
+                        .appendPath("movie")
+                        .appendPath(params[0])
+                        .appendPath("reviews")
+                        .appendQueryParameter("api_key",APPKEY_MOVIES);
+                Uri builtUri = builder.build();
+
+                URL url = new URL(builtUri.toString());
+                Log.d("La url:",url.toString());
+
+                urlConnection = (HttpURLConnection) url.openConnection();
+                urlConnection.setRequestMethod("GET");
+                urlConnection.connect();
+
+                InputStream inputStream = urlConnection.getInputStream();
+                StringBuffer buffer = new StringBuffer();
+                if(inputStream != null) {
+                    bReader = new BufferedReader(new InputStreamReader(inputStream));
+
+                    String line;
+                    while ((line = bReader.readLine()) != null) {
+                        buffer.append(line + "\n");
+                    }
+                    moviesReviewsJsonStr = buffer.toString();
+                }
+            }catch (IOException e) {
+                Log.e(nameClass, e.toString());
+            }catch (SecurityException e){
+                Log.d(nameClass, e.toString());
+            }finally {
+                if(urlConnection != null){
+                    urlConnection.disconnect();
+                }
+                if(bReader != null){
+                    try{
+                        bReader.close();
+                    }catch (IOException e){
+                        Log.e(nameClass,e.toString());
+                    }
+                }
+            }
+
+            try {
+                return getVideosAndReviewFromJson(moviesVideosJsonStr,moviesReviewsJsonStr);
+            }catch (JSONException e){
+                Log.e(nameClass,e.toString());
+            }
+            return null;
+        }
+
+        protected void onPostExecute(ArrayList<String> result) {
+            if(result.isEmpty()){
+                Toast.makeText(getActivity(),"YEP",Toast.LENGTH_LONG).show();
+            }else {
+                if (result.get(0) != null) {
+                    movieDetail.setVideos(result.get(0));
+                    Log.d("result 0: ",result.get(0));
+                }
+                if (result.get(1) != null) {
+                    movieDetail.setReviews(result.get(1));
+                    Log.d("result 1: ",result.get(1));
+                }
+            }
+            setVideosAndReviews();
+            vAdapter.notifyDataSetChanged();
+            rAdapter.notifyDataSetChanged();
+        }
+
+        // Analiza el json y devuelve un arraylist de peliculas.
+        protected ArrayList<String> getVideosAndReviewFromJson(String jsonVideoString, String jsonReviewString) throws JSONException{
+
+            ArrayList<String> result = new ArrayList<>();
+            if(jsonVideoString == null){ // In this case we don't need to do anything.
+                 result.add(";");
+            }else {
+
+                String videos = "";
+                final String OWM_RESULT = "results";
+                final String OWM_KEY = "key";
+
+                JSONObject videosJson = new JSONObject(jsonVideoString);
+
+                JSONArray moviesArray = videosJson.getJSONArray(OWM_RESULT);
+
+                for (int i = 0; i < moviesArray.length(); i++) {
+                    JSONObject videoJson = moviesArray.getJSONObject(i);
+                    String key = videoJson.getString(OWM_KEY);
+
+                    videos = videos + key + ";";
+                }
+                result.add(videos);
+                Log.d("Videos: ", videos);
+            }
+
+            if(jsonReviewString == null){
+                result.add(";");
+            }else{
+
+                String reviews = "";
+                final String OWM_RESULT = "results";
+                final String OWM_KEY = "url";
+                final String OWM_AUTHOR = "author";
+
+                JSONObject reviewsJson = new JSONObject(jsonReviewString);
+
+                JSONArray reviewArray = reviewsJson.getJSONArray(OWM_RESULT);
+
+                for (int i = 0; i < reviewArray.length(); i++) {
+                    JSONObject reviewJson = reviewArray.getJSONObject(i);
+                    String key = reviewJson.getString(OWM_KEY);
+                    String author = reviewJson.getString(OWM_AUTHOR);
+
+                    reviews = reviews + author + "-;" + key + ";";
+                }
+                result.add(reviews);
+                Log.d("Reviews: ", reviews);
+            }
+
+            return result;
+        }
+    }
 }

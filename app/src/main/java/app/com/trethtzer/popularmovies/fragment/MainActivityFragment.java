@@ -48,7 +48,7 @@ public class MainActivityFragment extends Fragment implements LoaderManager.Load
 
     private static MovieAdapterCursor adapterCursor;
     private static MovieAdapter adapter;
-    private static String APPKEY_MOVIES = "0c8ad403f2c28bfcd5449b1dfa968f94";
+    private static String APPKEY_MOVIES = "";
     private ArrayList<Movie> movies;
     private Bundle sIS;
     private int LOADER_ID = 1005;
