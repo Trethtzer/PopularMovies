@@ -13,6 +13,7 @@ import android.widget.ListView;
  * Created by Trethtzer on 25/03/2017.
  */
 
+// The purpose of this class is to enable listviews inside scrollviews.
 public class NestedListView extends ListView implements View.OnTouchListener, AbsListView.OnScrollListener {
 
     private int listViewTouchAction;

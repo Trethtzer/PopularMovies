@@ -1,7 +1,10 @@
 package app.com.trethtzer.popularmovies;
 
+import android.content.BroadcastReceiver;
 import android.content.ContentValues;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -19,10 +22,12 @@ import android.widget.Toast;
 import app.com.trethtzer.popularmovies.database.MovieContract;
 import app.com.trethtzer.popularmovies.fragment.DetailActivityFragment;
 import app.com.trethtzer.popularmovies.utilities.Movie;
+import app.com.trethtzer.popularmovies.utilities.SimpleIntentService;
 
 public class DetailActivity extends AppCompatActivity {
     private String nameClass = "DetailActivity";
     MenuItem favorite;
+    private ResponseReceiver receiver;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +37,11 @@ public class DetailActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        IntentFilter filter = new IntentFilter(ResponseReceiver.ACTION_RESP);
+        filter.addCategory(Intent.CATEGORY_DEFAULT);
+        receiver = new ResponseReceiver();
+        registerReceiver(receiver, filter);
     }
 
     @Override
@@ -42,7 +52,13 @@ public class DetailActivity extends AppCompatActivity {
         favorite = menu.findItem(R.id.action_favorite);
 
         Movie movieDetail = DetailActivityFragment.movieDetail;
-        Cursor c = getContentResolver().query(MovieContract.MovieEntry.CONTENT_URI.buildUpon().appendPath(movieDetail.getIdMovie()).build(),
+
+        // Todo esto lo hacemos con receiver.
+        Intent msgIntent = new Intent(this, SimpleIntentService.class);
+        msgIntent.putExtra(SimpleIntentService.PARAM_IN_MSG, movieDetail.getIdMovie());
+        startService(msgIntent);
+
+        /*Cursor c = getContentResolver().query(MovieContract.MovieEntry.CONTENT_URI.buildUpon().appendPath(movieDetail.getIdMovie()).build(),
                 null,
                 null,
                 null,
@@ -51,9 +67,22 @@ public class DetailActivity extends AppCompatActivity {
             favorite.setIcon(R.drawable.favorite);
         }else{
             favorite.setIcon(R.drawable.unfavorite);
-        }
+        }*/
 
         return true;
+    }
+
+
+    @Override
+    public void onDestroy(){
+        try{
+            if(receiver!=null)
+                unregisterReceiver(receiver);
+        }catch(Exception e)
+        {
+
+        }
+        super.onDestroy();
     }
 
     @Override
@@ -96,6 +125,22 @@ public class DetailActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+
+    public class ResponseReceiver extends BroadcastReceiver {
+        public static final String ACTION_RESP =
+                "com.trethtzer.intent.action.MESSAGE_PROCESSED";
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            boolean b = intent.getBooleanExtra(SimpleIntentService.PARAM_OUT_MSG,true);
+            if(b){
+                favorite.setIcon(R.drawable.favorite);
+            }else{
+                favorite.setIcon(R.drawable.unfavorite);
+            }
+        }
     }
 
 }

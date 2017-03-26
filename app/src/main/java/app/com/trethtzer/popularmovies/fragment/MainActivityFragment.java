@@ -150,7 +150,7 @@ public class MainActivityFragment extends Fragment implements LoaderManager.Load
             else {
                 new FetchMoviesTask().execute(sp.getString("search", getString(R.string.lp_defaultValue_search)));
             }
-        }else if(sIS.containsKey("movies")){
+        }else{
             // lastPosition = sIS.getInt("position");
             movies = sIS.getParcelableArrayList("movies");
             adapter.clear();
@@ -161,6 +161,7 @@ public class MainActivityFragment extends Fragment implements LoaderManager.Load
                 gv.setAdapter(adapter);
                 adapter.addAll(movies);
             }
+            gv.smoothScrollToPosition(sIS.getInt("index"));
         }
 
         super.onStart();
@@ -169,6 +170,8 @@ public class MainActivityFragment extends Fragment implements LoaderManager.Load
     @Override
     public void onSaveInstanceState(Bundle outB){
         outB.putParcelableArrayList("movies",movies);
+        int index = gv.getFirstVisiblePosition();
+        outB.putInt("index",index);
         super.onSaveInstanceState(outB);
     }
 

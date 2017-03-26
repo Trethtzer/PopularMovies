@@ -6,7 +6,11 @@ package app.com.trethtzer.popularmovies.utilities;
  * Esta clase contiene funciones auxiliares.
  */
 
-public class Utility {
+public final class Utility {
+
+    private Utility(){
+        throw new AssertionError();
+    };
 
     public static String getAuthor(String s){
         String result = "";

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="true"
+        jar="D:\computer\Android nanodegree\PopularMovies\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="3911eb73e19870f8b95fe6563eb7a57d89a8efd0">
+        <dex dex="D:\computer\Android nanodegree\PopularMovies\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_98c363658ef1334283361eda10e17dce0a72549f\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\computer\Android nanodegree\PopularMovies\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="c82741bc129dd5f99f11a4ab8666ae24262053b6">
+        <dex dex="D:\computer\Android nanodegree\PopularMovies\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run_308392a8a75955f3c9c7be615202bae8b605b685\classes.dex" />
+    </item>
+
+</items>

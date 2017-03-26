@@ -42,6 +42,9 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="app.com.trethtzer.popularmovies.MainActivity" />
         </activity>
+        <service
+            android:name=".utilities.SimpleIntentService"
+            android:exported="false" />
     </application>
 
 </manifest>

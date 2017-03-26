@@ -98,15 +98,6 @@ public class DetailActivityFragment extends Fragment implements LoaderManager.Lo
     public DetailActivityFragment() {}
 
 
-    /* public static DetailActivityFragment newInstance(Uri u){
-        DetailActivityFragment df = new DetailActivityFragment();
-        Bundle args = new Bundle();
-        args.putParcelable("uri",u);
-        df.setArguments(args);
-        return df;
-    } */
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
