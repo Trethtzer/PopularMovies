@@ -58,17 +58,6 @@ public class DetailActivity extends AppCompatActivity {
         msgIntent.putExtra(SimpleIntentService.PARAM_IN_MSG, movieDetail.getIdMovie());
         startService(msgIntent);
 
-        /*Cursor c = getContentResolver().query(MovieContract.MovieEntry.CONTENT_URI.buildUpon().appendPath(movieDetail.getIdMovie()).build(),
-                null,
-                null,
-                null,
-                null);
-        if(c.moveToFirst()){
-            favorite.setIcon(R.drawable.favorite);
-        }else{
-            favorite.setIcon(R.drawable.unfavorite);
-        }*/
-
         return true;
     }
 
@@ -107,6 +96,7 @@ public class DetailActivity extends AppCompatActivity {
             if(c.moveToFirst()){
                 // Tenemos que borrar de la base de datos.
                 getContentResolver().delete(MovieContract.MovieEntry.CONTENT_URI.buildUpon().appendPath(movieDetail.getIdMovie()).build(),null,null);
+                favorite.setIcon(R.drawable.unfavorite);
                 // favorite.setIcon(R.drawable.favorite);
             }else{
                 // Tenemos que añadir a la base de datos.

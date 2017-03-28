@@ -36,6 +36,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 
+import app.com.trethtzer.popularmovies.BuildConfig;
 import app.com.trethtzer.popularmovies.DetailActivity;
 import app.com.trethtzer.popularmovies.R;
 import app.com.trethtzer.popularmovies.database.MovieContract;
@@ -54,7 +55,7 @@ public class DetailActivityFragment extends Fragment implements LoaderManager.Lo
 
     private String nameClass = "DetailActivityFragment";
     public static Movie movieDetail = new Movie();
-    private static String APPKEY_MOVIES = "";
+    private static String APPKEY_MOVIES = BuildConfig.MY_API_KEY;
     public static ArrayList<String> videosList;
     public static ArrayList<String> reviewsList;
     public static VideoAdapter vAdapter;
@@ -114,6 +115,7 @@ public class DetailActivityFragment extends Fragment implements LoaderManager.Lo
                 rate.setText("Vote average: " + movieDetail.getAverage());
                 synopsis.setText(movieDetail.getSynopsis());
                 Picasso.with(getActivity()).load(movieDetail.getPosterPath()).into(poster);
+                new FetchVideosAndReviewsTask().execute(movieDetail.getIdMovie());
             }
         }else{
             if(savedInstanceState != null){
@@ -124,6 +126,7 @@ public class DetailActivityFragment extends Fragment implements LoaderManager.Lo
                     rate.setText("Vote average: " + movieDetail.getAverage());
                     synopsis.setText(movieDetail.getSynopsis());
                     Picasso.with(getActivity()).load(movieDetail.getPosterPath()).into(poster);
+                    new FetchVideosAndReviewsTask().execute(movieDetail.getIdMovie());
                 }
             }else {
                 uriIntent = getActivity().getIntent().getData();
@@ -139,8 +142,12 @@ public class DetailActivityFragment extends Fragment implements LoaderManager.Lo
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 String s = (String) adapterView.getItemAtPosition(i);
                 // Hacemos intent a youtube con el String.
-                // Toast.makeText(getActivity(), s,Toast.LENGTH_LONG).show();
-                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.youtube.com/watch?v=" + s)));
+                Intent sendIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.youtube.com/watch?v=" + s));
+                String title = getResources().getString(R.string.chooser_title);
+                Intent chooser = Intent.createChooser(sendIntent, title);
+                if (sendIntent.resolveActivity(getActivity().getPackageManager()) != null) {
+                    startActivity(chooser);
+                }
             }
         }));
         reviewsList = new ArrayList<>();
@@ -156,8 +163,6 @@ public class DetailActivityFragment extends Fragment implements LoaderManager.Lo
             }
         }));
 
-        new FetchVideosAndReviewsTask().execute(movieDetail.getIdMovie());
-
         return rootView;
     }
 
@@ -172,26 +177,6 @@ public class DetailActivityFragment extends Fragment implements LoaderManager.Lo
     public void onSaveInstanceState(Bundle outB){
         outB.putParcelable("movie",movieDetail);
         super.onSaveInstanceState(outB);
-    }
-
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item){
-        if(R.id.action_favorite == item.getItemId()){
-            // Escribimos/borramos de la base de datos.
-            ContentValues movieValues = new ContentValues();
-            movieValues.put(MovieContract.MovieEntry.COLUMN_IDMOVIE,movieDetail.getIdMovie());
-            movieValues.put(MovieContract.MovieEntry.COLUMN_TITLE,movieDetail.getTitle());
-            movieValues.put(MovieContract.MovieEntry.COLUMN_AVERAGE,movieDetail.getAverage());
-            movieValues.put(MovieContract.MovieEntry.COLUMN_DATE,movieDetail.getDate());
-            movieValues.put(MovieContract.MovieEntry.COLUMN_POSTER_PATH,movieDetail.getPosterPath());
-            movieValues.put(MovieContract.MovieEntry.COLUMN_SYNOPSIS,movieDetail.getSynopsis());
-            movieValues.put(MovieContract.MovieEntry.COLUMN_REVIEWS,movieDetail.getReviews());
-            movieValues.put(MovieContract.MovieEntry.COLUMN_VIDEOS,movieDetail.getVideos());
-            getContext().getContentResolver().insert(MovieContract.MovieEntry.buildMovieUri(Long.getLong(movieDetail.getIdMovie())),movieValues);
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
     }
 
 
@@ -232,42 +217,12 @@ public class DetailActivityFragment extends Fragment implements LoaderManager.Lo
 
         movieDetail.setIdMovie(data.getString(COL_IDMOVIE));
         movieDetail.setId(data.getInt(COL_ID));
-        movieDetail.setReviews(data.getString(COL_REVIEWS));
-        movieDetail.setVideos(data.getString(COL_VIDEOS));
+        // movieDetail.setReviews(data.getString(COL_REVIEWS));
+        // movieDetail.setVideos(data.getString(COL_VIDEOS));
+        new FetchVideosAndReviewsTask().execute(movieDetail.getIdMovie());
     }
     @Override
     public void onLoaderReset(Loader<Cursor> loader) {}
-
-    public void setVideosAndReviews(){
-        String videos = movieDetail.getVideos();
-        String reviews = movieDetail.getReviews();
-        boolean author = false;
-
-        String result = "";
-        for(int i = 0; i < videos.length(); i++){
-            char c = videos.charAt(i);
-            if(c == ';'){
-                videosList.add(result.toString()); // Para evitar que cambie al cambiar result.
-                result = "";
-            }else{
-                result = result + c;
-            }
-        }
-        result = "";
-        for(int i = 0; i < reviews.length(); i++){
-            char c = reviews.charAt(i);
-            if(c == ';' && author == false){
-                reviewsList.add(result.toString());
-                result = "";
-            }else if(c == '-'){
-                author = true;
-                result = result + c;
-            }else{
-                author = false;
-                result = result + c;
-            }
-        }
-    }
 
     public class FetchVideosAndReviewsTask extends AsyncTask<String,Void,ArrayList<String>> {
 
@@ -400,6 +355,39 @@ public class DetailActivityFragment extends Fragment implements LoaderManager.Lo
             setVideosAndReviews();
             vAdapter.notifyDataSetChanged();
             rAdapter.notifyDataSetChanged();
+        }
+
+        public void setVideosAndReviews(){
+            String videos = movieDetail.getVideos();
+            String reviews = movieDetail.getReviews();
+            videosList.clear();
+            reviewsList.clear();
+            boolean author = false;
+
+            String result = "";
+            for(int i = 0; i < videos.length(); i++){
+                char c = videos.charAt(i);
+                if(c == ';'){
+                    videosList.add(result.toString()); // Para evitar que cambie al cambiar result.
+                    result = "";
+                }else{
+                    result = result + c;
+                }
+            }
+            result = "";
+            for(int i = 0; i < reviews.length(); i++){
+                char c = reviews.charAt(i);
+                if(c == ';' && author == false){
+                    reviewsList.add(result.toString());
+                    result = "";
+                }else if(c == '-'){
+                    author = true;
+                    result = result + c;
+                }else{
+                    author = false;
+                    result = result + c;
+                }
+            }
         }
 
         // Analiza el json y devuelve un arraylist de peliculas.

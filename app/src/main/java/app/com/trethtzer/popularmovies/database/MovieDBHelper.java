@@ -11,8 +11,8 @@ import app.com.trethtzer.popularmovies.database.MovieContract.MovieEntry;
 
 public class MovieDBHelper extends SQLiteOpenHelper{
 
-    private static final int DATABASE_VERSION = 3;
-    private static final String DATABASE_ALTER_MOVIE_3 = "";
+    private static final int DATABASE_VERSION = 4;
+    private static final String DATABASE_ALTER_MOVIE_4 = "";
 
     static final String DATABASE_NAME = "movie.db";
 
@@ -39,7 +39,10 @@ public class MovieDBHelper extends SQLiteOpenHelper{
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int oldVersion, int newVersion){
         if(oldVersion < 4){
-            sqLiteDatabase.execSQL(DATABASE_ALTER_MOVIE_3);
+            sqLiteDatabase.execSQL(DATABASE_ALTER_MOVIE_4);
         }
+        // Si queremos borrar la base de datos:
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + MovieEntry.TABLE_NAME);
+        onCreate(sqLiteDatabase);
     }
 }
